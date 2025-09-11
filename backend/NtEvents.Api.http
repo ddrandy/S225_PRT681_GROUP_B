@@ -1,0 +1,6 @@
+@NtEvents.Api_HostAddress = http://localhost:5248
+
+GET {{NtEvents.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
