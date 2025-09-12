@@ -1,0 +1,81 @@
+# Week 06
+
+## Research on Testing Methodologies  
+
+### Manual Testing  
+Manual testing means the tester runs the test cases by hand without using any automation tool. The tester clicks through the system, enters data, and checks whether the system works correctly.  
+This type of testing is good for small projects, for finding usability issues, and for exploratory testing where human judgment is important. But it can take more time if the project is large, and repeating the same tests again and again can be tiring.  
+
+### Automated Testing  
+Automated testing uses software tools to run test cases automatically. The tester writes scripts or uses ready-made tools such as Selenium or Cypress. These tools can repeat the tests many times without extra effort.  
+Automation is very useful for regression testing, load testing, or any task that is repeated often. It saves time in the long run, but it requires effort to set up at the beginning.  
+
+### Functional Testing  
+Functional testing checks what the system does. It makes sure that each feature of the system works according to the requirement.  
+For example, testing that a user can log in with the correct username and password is a functional test.  
+
+### Non-Functional Testing  
+Non-functional testing checks how well the system works. It focuses on speed, security, performance, and usability.  
+For example, testing how fast a website loads when 1,000 people use it at the same time is non-functional testing.  
+
+### Regression Testing  
+Regression testing means testing the system again after changes are made. The purpose is to make sure that old features still work correctly after new features are added or bugs are fixed.  
+
+### User Acceptance Testing (UAT)  
+UAT is the final stage of testing. It is usually done by the business users or clients, not by developers. They test the system to see if it meets their real business needs.  
+If UAT is passed, the software can go live.  
+
+
+## Research on Test Cases & Sample The NT Event Planner App 
+ The NT Event Planner App allows users to log in, search for local events, view details, and register or book tickets for participation.
+
+| Test Case ID | Feature                | Test Steps                                                                 | Expected Result                                                    | Notes                     |
+|--------------|------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------|---------------------------|
+| TC-001       | Login                  | Open the app → enter valid username and password → click login             | User should be logged in successfully and redirected to dashboard  | Simple positive test      |
+| TC-002       | Event Search           | Enter “Music Festival” in search box → click Search                        | App should display list of matching events with correct details    | Main feature validation   |
+| TC-003       | Invalid Search Input   | Enter “xyz123” in search box → click Search                                | App should display “No events found” message                       | Negative test             |
+| TC-004       | Event Registration     | Select “Darwin Food Festival” → click Register → confirm booking           | App should show booking confirmation page with event details       | Business requirement test |
+| TC-005       | Empty Search           | Leave search box blank → click Search                                      | App should prompt user with message “Please enter event name”      | Input validation          |
+| TC-006       | Event Detail Page      | Click on an event card → open detail page                                  | App should display event details (date, time, location, description) | Positive functional test  |
+| TC-007       | Duplicate Registration | Try registering for same event twice                                       | App should prevent duplicate booking and show warning              | Negative/validation test  |
+
+Design Techniques Used: 
+- Equivalence Partitioning → valid event names vs invalid or random text.
+- Boundary Value Analysis → test search box input length (e.g., 1 char, max 50 chars).
+- Positive and Negative Tests → check correct event search vs invalid or blank inputs.
+- Business Rule Testing → ensure registration follows app rules (e.g., no duplicates)
+
+## Course on Automation (One Tool)  
+
+- Chosen Tool: JIRA with Zephyr (Test Management & Automation Rules) 
+- Course / Resources:  
+  - YouTube: [Atlassian Official Channel – JIRA tutorials](https://www.youtube.com/@atlassian)  
+  - YouTube: [Automation Step by Step – JIRA Automation series](https://www.youtube.com/@AutomationStepByStep)  
+  - YouTube: Zephyr tutorials (test case management and execution)  
+
+-Practical Task:  
+  1. Install JIRA (free trial cloud version).  
+  2. Add Zephyr plugin for test case management.  
+  3. Create a simple JIRA project → add user stories → create test cases in Zephyr.  
+  4. Log one bug and link it to a story/test.  
+  5. Set up a basic **JIRA automation rule** (e.g., when bug is logged → auto assign to developer).  
+  
+  Learning JIRA with Zephyr is highly valuable because almost all Agile teams in Australia use JIRA for project and defect tracking.  
+  By practising automation rules and test case management, I’ll be ready to work in real Agile sprints. This also shows employers I can handle both manual test planning and automation workflows in one tool.  
+
+
+
+## Identify Tools & Use Cases  
+
+| Tool           | Use Case (explained simply)                                                                 |
+|----------------|----------------------------------------------------------------------------------------------|
+| JMeter     | JMeter is used for performance and load testing. It can simulate thousands of users visiting a website at the same time to see if the system stays stable. |
+| Fiddler    | Fiddler is a web debugging tool. It helps testers see the network traffic between browser and server. It is useful for checking API calls, performance issues, and security problems. |
+| Postman    | Postman is a tool for API testing. Testers can send requests like GET or POST to check whether APIs return the correct data and status codes. It is simple to use and supports automation. |
+| Selenium   | Selenium is used for automating web browsers. Testers write scripts that can perform clicks, typing, and navigation on websites. It is widely used for regression and functional testing. |
+| Cypress    | Cypress is a modern tool for end-to-end testing of web apps. It runs directly in the browser and is faster to set up compared to Selenium. It is especially good for JavaScript applications. |
+| Bugzilla   | Bugzilla is a defect tracking tool. Testers use it to log bugs, assign them to developers, and track them until they are fixed and closed. |
+| TestRail / Zephyr| These are test management tools. They help teams create test cases, organise them, run them, and report results in one place. |
+| JIRA      | JIRA is a project management and issue tracking tool. It is widely used in Agile projects to manage user stories, tasks, bugs, and sprints. |
+
+---
