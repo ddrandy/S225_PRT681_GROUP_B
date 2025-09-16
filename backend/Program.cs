@@ -5,13 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NtEvents.Api.Data;
 using NtEvents.Api.Models;
+using NtEvents.Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 // EF Core
 builder.Services.AddDbContext<AppDbContext>(o =>
@@ -47,6 +43,15 @@ builder.Services.AddAuthentication(o =>
         IssuerSigningKey = key
     };
 });
+
+// admin-only policy
+var authBuilder = builder.Services.AddAuthorizationBuilder();
+authBuilder.AddPolicy("AdminOnly", p => p.RequireRole("Admin"));
+
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // CORS for frontend
 builder.Services.AddCors(o =>
@@ -109,6 +114,7 @@ app.MapPost("/api/auth/register", async (
     return Results.Ok(new { token = jwtString });
 });
 
+// profile
 app.MapGet("/api/auth/me", async (UserManager<ApplicationUser> userManager, HttpContext http) =>
 {
     if (!http.User.Identity?.IsAuthenticated ?? true) return Results.Unauthorized();
@@ -126,4 +132,92 @@ app.MapGet("/api/events/count", async (AppDbContext db) =>
     return Results.Ok(new { count });
 });
 
+app.MapGet("/api/events", async (
+    string? q, EventCategory? category, DateTimeOffset? from, DateTimeOffset? to, string? suburb,
+    int page, int pageSize, AppDbContext db) =>
+{
+    page = page <= 0 ? 1 : page;
+    pageSize = pageSize is <= 0 or > 50 ? 10 : pageSize;
+
+    var query = db.Events.AsQueryable();
+    if (!string.IsNullOrWhiteSpace(q))
+        query = query.Where(e => e.Title.Contains(q) || (e.Suburb.Contains(q) || e.Address.Contains(q)));
+    if (category.HasValue) query = query.Where(e => e.Category == category);
+    if (from.HasValue) query = query.Where(e => e.StartTime >= from);
+    if (to.HasValue) query = query.Where(e => e.EndTime <= to);
+    if (!string.IsNullOrWhiteSpace(suburb)) query = query.Where(e => e.Suburb == suburb);
+
+    var total = await query.CountAsync();
+    var data = await query.OrderBy(e => e.StartTime)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+    return Results.Ok(new { total, page, pageSize, data });
+});
+
+app.MapGet("/api/events/{id:guid}", async (Guid id, AppDbContext db) =>
+{
+    var e = await db.Events.FindAsync(id);
+    return e is null ? Results.NotFound() : Results.Ok(e);
+});
+
+// admin CRUD
+app.MapPost("/api/admin/events", async (Event dto, AppDbContext db) =>
+{
+    dto.Id = Guid.NewGuid();
+    dto.CreatedAt = DateTimeOffset.UtcNow;
+    db.Events.Add(dto);
+    await db.SaveChangesAsync();
+    return Results.Created($"/api/events/{dto.Id}", dto);
+}).RequireAuthorization("AdminOnly");
+
+app.MapPut("/api/admin/events/{id:guid}", async (Guid id, Event dto, AppDbContext db) =>
+{
+    var e = await db.Events.FindAsync(id);
+    if (e is null) return Results.NotFound();
+
+    e.Title = dto.Title;
+    e.Description = dto.Description;
+    e.Category = dto.Category;
+    e.StartTime = dto.StartTime;
+    e.EndTime = dto.EndTime;
+    e.VenueName = dto.VenueName;
+    e.Suburb = dto.Suburb;
+    e.Address = dto.Address;
+    e.HeroImageUrl = dto.HeroImageUrl;
+    await db.SaveChangesAsync();
+    return Results.Ok(e);
+}).RequireAuthorization("AdminOnly");
+
+app.MapDelete("/api/admin/events/{id:guid}", async (Guid id, AppDbContext db) =>
+{
+    var e = await db.Events.FindAsync(id);
+    if (e is null) return Results.NotFound();
+    db.Events.Remove(e);
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+}).RequireAuthorization("AdminOnly");
+
+// registrations
+app.MapPost("/api/events/{id:guid}/registrations", async (Guid id, Registration r, AppDbContext db) =>
+{
+    var exists = await db.Events.AnyAsync(e => e.Id == id);
+    if (!exists) return Results.NotFound();
+    r.Id = Guid.NewGuid();
+    r.EventId = id;
+    r.CreatedAt = DateTimeOffset.UtcNow;
+    db.Registrations.Add(r);
+    await db.SaveChangesAsync();
+    return Results.Created($"/api/events/{id}/registrations/{r.Id}", new { r.Id });
+});
+
+app.MapGet("/api/admin/events/{id:guid}/registrations", async (Guid id, AppDbContext db) =>
+{
+    var list = await db.Registrations.Where(x => x.EventId == id).ToListAsync();
+    return Results.Ok(list);
+}).RequireAuthorization("AdminOnly");
+
+// Add seed admin
+await IdentitySeed.SeedAsync(app.Services);
 app.Run();
