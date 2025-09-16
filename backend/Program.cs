@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using NtEvents.Api.Data;
 using NtEvents.Api.Models;
 using NtEvents.Api.Infrastructure;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,27 +84,46 @@ app.UseAuthorization();
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }))
    .WithName("HealthCheck");
 
-// auth endpoints
+// register
 app.MapPost("/api/auth/register", async (
     UserManager<ApplicationUser> userManager,
-    SignInManager<ApplicationUser> signInManager,
+    string username, string email, string password) =>
+{
+    var existing = await userManager.FindByEmailAsync(email);
+    if (existing != null) return Results.Conflict(new { message = "Email already registered" });
+
+    var user = new ApplicationUser { UserName = username, Email = email, EmailConfirmed = true };
+    var result = await userManager.CreateAsync(user, password);
+    return result.Succeeded
+        ? Results.Ok(new { message = "registered" })
+        : Results.BadRequest(result.Errors);
+});
+
+// login
+app.MapPost("/api/auth/login", async (
+    UserManager<ApplicationUser> userManager,
     IConfiguration cfg,
-    string email, string password) =>
+    string email, string password
+) =>
 {
     var user = await userManager.FindByEmailAsync(email);
-    if (user == null) return Results.Unauthorized();
+    if (user is null) return Results.Unauthorized();
 
     var ok = await userManager.CheckPasswordAsync(user, password);
     if (!ok) return Results.Unauthorized();
+
+    var roles = await userManager.GetRolesAsync(user);
 
     // issue JWT
     var jwt = cfg.GetSection("Jwt");
     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!));
     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-    var claims = new[] {
-        new System.Security.Claims.Claim("sub", user.Id),
-        new System.Security.Claims.Claim("email", user.Email!)
+    var claims = new List<Claim> {
+        new ("sub", user.Id),
+        new ("email", user.Email!)
     };
+    claims.AddRange(roles.Select(r => new Claim(ClaimTypes.Role, r)));
+
     var token = new System.IdentityModel.Tokens.Jwt.JwtSecurityToken(
         issuer: jwt["Issuer"],
         audience: jwt["Audience"],
@@ -111,7 +132,7 @@ app.MapPost("/api/auth/register", async (
         signingCredentials: creds
     );
     var jwtString = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().WriteToken(token);
-    return Results.Ok(new { token = jwtString });
+    return Results.Ok(new { token = jwtString, roles });
 });
 
 // profile
@@ -122,10 +143,106 @@ app.MapGet("/api/auth/me", async (UserManager<ApplicationUser> userManager, Http
     if (userId is null) return Results.Unauthorized();
     var user = await userManager.FindByIdAsync(userId);
     return user is null ? Results.Unauthorized()
-                        : Results.Ok(new { user.Id, user.Email, user.UserName });
+                        : Results.Ok(new
+                        {
+                            user.Id,
+                            user.Email,
+                            user.UserName,
+                            Roles = http.User.FindAll(ClaimTypes.Role).Select(c => c.Value)
+                        });
 }).RequireAuthorization();
 
-// example endpoints
+// admin ops
+// list users
+app.MapGet("/api/admin/users", (
+    UserManager<ApplicationUser> users,
+    int page = 1, int pageSize = 20
+) =>
+{
+    page = page <= 0 ? 1 : page;
+    pageSize = pageSize is <= 0 or > 100 ? 20 : pageSize;
+
+    var q = users.Users.OrderBy(u => u.Email);
+    var total = q.Count();
+    var data = q.Skip((page - 1) * pageSize).Take(pageSize).Select(u => new
+    {
+        u.Id,
+        u.Email,
+        u.UserName
+    }).ToList();
+
+    return Results.Ok(new { total, page, pageSize, data });
+}).RequireAuthorization("AdminOnly");
+
+// get one user and roles
+app.MapGet("/api/admin/users/{id}", async (
+    string id, UserManager<ApplicationUser> users) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+    var roles = await users.GetRolesAsync(u);
+    return Results.Ok(new { u.Id, u.Email, u.UserName, Roles = roles });
+}).RequireAuthorization("AdminOnly");
+
+// assign role
+app.MapPost("/api/admin/users/{id}/roles", async (
+    string id, string[] roles, UserManager<ApplicationUser> users, RoleManager<IdentityRole> rolesMgr) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+
+    foreach (var r in roles.Distinct())
+        if (!await rolesMgr.RoleExistsAsync(r)) await rolesMgr.CreateAsync(new IdentityRole(r));
+
+    var current = await users.GetRolesAsync(u);
+    var toAdd = roles.Except(current);
+    var addRes = await users.AddToRolesAsync(u, toAdd);
+    if (!addRes.Succeeded) return Results.BadRequest(addRes.Errors);
+
+    return Results.NoContent();
+}).RequireAuthorization("AdminOnly");
+
+// remove role
+app.MapDelete("/api/admin/users/{id}/roles/{role}", async (
+    string id, string role, UserManager<ApplicationUser> users) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+    var res = await users.RemoveFromRoleAsync(u, role);
+    return res.Succeeded ? Results.NoContent() : Results.BadRequest(res.Errors);
+}).RequireAuthorization("AdminOnly");
+
+// lock user
+app.MapPost("/api/admin/users/{id}/lock", async (
+    string id, DateTimeOffset? lockoutEnd, UserManager<ApplicationUser> users) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+    await users.SetLockoutEnabledAsync(u, lockoutEnd.HasValue);
+    await users.SetLockoutEndDateAsync(u, lockoutEnd);
+    return Results.NoContent();
+}).RequireAuthorization("AdminOnly");
+
+// delete user
+app.MapDelete("/api/admin/users/{id}", async (string id, UserManager<ApplicationUser> users) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+    var res = await users.DeleteAsync(u);
+    return res.Succeeded ? Results.NoContent() : Results.BadRequest(res.Errors);
+}).RequireAuthorization("AdminOnly");
+
+// reset password (for admin to set a new one)
+app.MapPost("/api/admin/users/{id}/password", async (string id, string newPassword, UserManager<ApplicationUser> users) =>
+{
+    var u = await users.FindByIdAsync(id);
+    if (u is null) return Results.NotFound();
+    var token = await users.GeneratePasswordResetTokenAsync(u);
+    var res = await users.ResetPasswordAsync(u, token, newPassword);
+    return res.Succeeded ? Results.NoContent() : Results.BadRequest(res.Errors);
+}).RequireAuthorization("AdminOnly");
+
+// event endpoints
 app.MapGet("/api/events/count", async (AppDbContext db) =>
 {
     var count = await db.Events.CountAsync();
@@ -162,7 +279,7 @@ app.MapGet("/api/events/{id:guid}", async (Guid id, AppDbContext db) =>
     return e is null ? Results.NotFound() : Results.Ok(e);
 });
 
-// admin CRUD
+// admin event CRUD
 app.MapPost("/api/admin/events", async (Event dto, AppDbContext db) =>
 {
     dto.Id = Guid.NewGuid();

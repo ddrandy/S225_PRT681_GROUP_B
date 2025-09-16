@@ -12,8 +12,8 @@ using NtEvents.Api.Data;
 namespace NtEvents.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250916053407_RenameEventColumns")]
-    partial class RenameEventColumns
+    [Migration("20250916064016_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
