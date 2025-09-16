@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NtEvents.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddDbContext<AppDbContext>(o =>
-// o.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+builder.Services.AddDbContext<AppDbContext>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -40,6 +41,12 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" }))
    .WithName("HealthCheck");
+
+app.MapGet("/api/events/count", async (AppDbContext db) =>
+{
+    var count = await db.Events.CountAsync();
+    return Results.Ok(new { count });
+});
 
 app.Run();
 
