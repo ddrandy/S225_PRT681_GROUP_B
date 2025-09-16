@@ -11,10 +11,10 @@ namespace NtEvents.Api.Models
     public DateTimeOffset StartTime { get; set; }
     public DateTimeOffset EndTime { get; set; }
     public string VenueName { get; set; } = default!;
-    public string Surbub { get; set; } = default!;
+    public string Suburb { get; set; } = default!;
     public string Address { get; set; } = default!;
     public string? HeroImageUrl { get; set; }
-    public DateTimeOffset CreatedAd { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
   }
 }
