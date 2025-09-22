@@ -7,7 +7,7 @@ type Ctx = AuthState & {
   logout: () => void;
 };
 
-const AuthCtx = createContext<Ctx>(null as any);
+const AuthCtx = createContext<Ctx | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(localStorage.getItem("jwt"));
@@ -36,5 +36,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return <AuthCtx.Provider value={{ token, roles, email, login, logout }}>{children}</AuthCtx.Provider>;
 }
-export const useAuth = () => useContext(AuthCtx);
+export const useAuth = () => {
+  const ctx = useContext(AuthCtx);
+  if (!ctx) throw new Error("useAuth must be used within <AuthProvider>");
+  return ctx
+};
 export const useIsAdmin = () => useAuth().roles.includes("Admin");
