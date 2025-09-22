@@ -62,7 +62,7 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials()
-        .WithOrigins("http://localhost:5173"));
+        .WithOrigins("http://localhost:5174"));
 });
 
 builder.Services.AddOpenApi();
@@ -73,6 +73,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
