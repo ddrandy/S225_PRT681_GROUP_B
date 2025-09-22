@@ -5,6 +5,8 @@ import "./index.css";
 import EventsList from "./pages/EventsList";
 import EventDetail from "./pages/EventDetail";
 import RootLayout from "./layouts/RootLayout"; // <-- add
+import Login from "./pages/Login";
+import { AuthProvider } from "./auth";
 
 const router = createBrowserRouter([
   {
@@ -14,12 +16,18 @@ const router = createBrowserRouter([
       { index: true, element: <EventsList /> },
       { path: "events/:id", element: <EventDetail /> },
       // add other routes here...
+      { path: "login", element: <Login /> },
+      // { path: "admin/events", element: <AdminEvents /> },
+      // { path: "admin/users", element: <AdminUsers /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* must wrapped Router */}
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
