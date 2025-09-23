@@ -11,6 +11,19 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS for frontend
+builder.Services.AddCors(o =>
+{
+    o.AddDefaultPolicy(p => p
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials()
+        .WithOrigins(
+            "http://localhost:5174",
+            "http://127.0.0.1:5174"
+        ));
+});
+
 // EF Core
 builder.Services.AddDbContext<AppDbContext>(o =>
     o.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
@@ -54,16 +67,6 @@ authBuilder.AddPolicy("AdminOnly", p => p.RequireRole("Admin"));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// CORS for frontend
-builder.Services.AddCors(o =>
-{
-    o.AddDefaultPolicy(p => p
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials()
-        .WithOrigins("http://localhost:5174"));
-});
 
 builder.Services.AddOpenApi();
 
