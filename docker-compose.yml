@@ -1,20 +1,20 @@
+version: "3.9"
+
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: ntevents-mssql
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Your_password123" # CHANGE THIS
-    # Not publishing port to host; api reaches it on the compose network via "mssql:1433"
+      SA_PASSWORD: "MSSql123!"     # ← set a strong literal here (no ${...})
+    # you don't need to publish 1433 to host; API talks over the compose network
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -Q 'SELECT 1' || exit 1",
-        ]
+      # tools are under /opt/mssql-tools18 now; -C trusts server cert
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$${SA_PASSWORD}\" -C -Q \"SELECT 1\" >/dev/null 2>&1 || exit 1"]
       interval: 10s
-      timeout: 3s
-      retries: 10
+      timeout: 5s
+      retries: 30
+      start_period: 60s   # give SQL Server time to finish first-time init
 
   api:
     build:
@@ -24,21 +24,12 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
       ASPNETCORE_URLS: "http://0.0.0.0:5248"
-      ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=Your_password123;Encrypt=True;TrustServerCertificate=True"
+      ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True"
       Jwt__Issuer: "NtEvents"
       Jwt__Audience: "NtEventsClient"
-      Jwt__Key: "+O9ChwwzdeOHG85DrRIf7+/k2XbdAJBSchiZ5qEaRW7tRlgRjeebMk1DXNh8MYv4trI1VWKGsmOLXuXjdJy0Ng=="
+      Jwt__Key: "REPLACE_WITH_A_LONG_RANDOM_SECRET"
     depends_on:
       mssql:
         condition: service_healthy
-    # publish API only to loopback so it's not accessible from the internet directly
     ports:
       - "127.0.0.1:5248:5248"
-  web:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    container_name: ntevents-web
-    env_file: frontend/.env.docker
-    ports:
-      - "127.0.0.1:8088:80"
