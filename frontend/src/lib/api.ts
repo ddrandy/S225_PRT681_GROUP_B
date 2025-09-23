@@ -39,11 +39,21 @@ export const api = {
 
   // auth
   me: () => http<{ id: string; email: string, userName: string; roles: string[] }>(`/api/auth/me`),
+  meWithToken: async (token: string) => {
+    const res = await fetch(`${base}/api/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    return res.json() as Promise<{ id: string; email: string; userName: string; roles: string[] }>;
+  },
   login: async (email: string, password: string) => {
-    const r = await http<{ token: string; roles?: string[] }>(
-      `/api/auth/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
-      { method: "POST" }
-    );
+    const res = await fetch(`${base}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const r = await res.json() as { token: string; roles?: string[] };
     localStorage.setItem("jwt", r.token);
     return r;
   },

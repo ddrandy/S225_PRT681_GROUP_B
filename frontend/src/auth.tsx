@@ -26,7 +26,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const r = await api.login(email, password);
     setToken(r.token);
     setRoles(r.roles ?? []);
-    const me = await api.me();
+    const me = await api.meWithToken(r.token);
     setEmail(me.email);
   }
   function logout() {

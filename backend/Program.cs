@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using NtEvents.Api.Data;
 using NtEvents.Api.Models;
 using NtEvents.Api.Infrastructure;
+using NtEvents.Api.Contracts;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -108,13 +109,13 @@ app.MapPost("/api/auth/register", async (
 app.MapPost("/api/auth/login", async (
     UserManager<ApplicationUser> userManager,
     IConfiguration cfg,
-    string email, string password
+    LoginDto dto
 ) =>
 {
-    var user = await userManager.FindByEmailAsync(email);
+    var user = await userManager.FindByEmailAsync(dto.Email);
     if (user is null) return Results.Unauthorized();
 
-    var ok = await userManager.CheckPasswordAsync(user, password);
+    var ok = await userManager.CheckPasswordAsync(user, dto.Password);
     if (!ok) return Results.Unauthorized();
 
     var roles = await userManager.GetRolesAsync(user);
