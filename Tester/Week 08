@@ -1,0 +1,153 @@
+                                             Tools & Technologies
+
+1. API Testing: Postman, SoapUI
+Steps:
+•	Open Postman → create a new request.
+•	Select method (GET/POST/PUT/DELETE).
+•	Enter API URL (e.g., https://api.example.com/login).
+•	Add headers (e.g., Content-Type: application/json).
+•	Enter request body:
+•	{ "email": "user@test.com", "password": "12345" }
+•	Click Send → check status code (200 OK) and response body.
+•	Save request into a collection for re-use in regression testing.
+ SoapUI works similarly but better for SOAP/XML services.
+
+2. UI Automation: Selenium, Cypress
+Steps:
+•	Identify test scenario (e.g., login page).
+•	Open browser → locate elements (id, name, xpath).
+•	Write script (example in Selenium – Java):
+•	driver.findElement(By.id("email")).sendKeys("user@test.com");
+•	driver.findElement(By.id("password")).sendKeys("12345");
+•	driver.findElement(By.id("submit")).click();
+•	Run test → validate if expected text (“Welcome”) appears.
+•	Add into Page Object Model (POM) for maintainability.
+Cypress is easier for JavaScript-based projects (runs directly in browser).
+
+3. Performance Testing: JMeter, LoadRunner
+Steps (JMeter):
+•	Open JMeter → add a Thread Group (e.g., 100 users, 10 loops).
+•	Add HTTP Request → enter API or web URL.
+•	Add Listeners (View Results Tree, Summary Report).
+•	Run test → check Avg Response Time, Errors %, Throughput.
+•	Analyze report → is system stable under load?
+LoadRunner is enterprise-level, similar steps but more advanced reporting.
+
+4. Debugging & Monitoring: Fiddler, Browser Developer Tools
+Steps (Chrome DevTools):
+•	Open web page → press F12.
+•	Go to Network tab → reload page.
+•	Inspect API calls (check status, payload, response).
+•	Check console for JavaScript errors.
+•	Use Fiddler to capture HTTP/HTTPS traffic → debug backend requests.
+
+5. CI/CD & Build Tools: Jenkins
+Steps:
+•	Developer commits code/tests to GitHub.
+•	Jenkins job is triggered automatically.
+•	Jenkins pulls latest code → builds → runs automated tests (Selenium/Cypress/Postman).
+•	If tests pass → deployment continues.
+•	If fail → team notified via email/Slack.
+
+6. Test Management & Collaboration: Jira, Trello, TestRail
+Steps (Jira):
+•	Create new bug → add title, steps, expected vs actual result.
+•	Assign severity (Critical, High, Medium, Low).
+•	Assign to developer.
+•	Track status (Open → In Progress → Fixed → Closed).
+•	Link bug to TestRail test case.
+ Trello = simple Kanban board for task tracking.
+TestRail = test case management (plan, run, report).
+
+7. Version Control: Git (GitHub, GitLab)
+Steps:
+•	Clone repo: git clone <url>.
+•	Create branch: git checkout -b feature-login-test.
+•	Add script → git add .
+•	Commit: git commit -m "Added login test".
+•	Push: git push origin feature-login-test.
+•	Create pull request → review → merge.
+ 
+8. Virtualization: VirtualBox, VMware
+Steps:
+•	Install VirtualBox.
+•	Create a new virtual machine → choose OS (Windows/Linux).
+•	Allocate CPU, memory, and storage.
+•	Install software → run application in test environment.
+•	Useful for testing on multiple OS without separate hardware.
+
+                                   Skills/Practices
+
+1. Manual Testing; Test Case Design
+What: Designing and executing test cases based on requirements.
+Steps:
+Read user story: “User logs in with email/password.”
+Write test cases: valid login, invalid password, empty fields.
+Execute tests → document results.
+Example: Expected = “Welcome back”, Actual = Error → raise defect.
+
+2. API Testing & Automation; UI Test Automation
+What: Verify back-end APIs and automate front-end testing.
+Steps (API): Use Postman → POST /login → check status 200 + token.
+Steps (UI): Automate login form with Selenium/Cypress.
+Example: Run automated test suite daily → catches bugs early.
+
+3. Page Object Model (POM), Data-Driven Testing
+What: Structure automation scripts for reusability + feed test data from external files.
+Steps:
+POM: Create separate class for login page → reuse in multiple tests.
+DDT: Store usernames/passwords in Excel/CSV → run tests with different inputs.
+Example: Same login script runs with 10 different accounts.
+
+4. Regression Pack Creation & Maintenance
+•	What: A set of test cases/scripts to ensure old features still work after updates.
+•	Steps:
+  	Identify critical features (login, search, checkout).
+  	Automate or keep manual test cases.
+   	Run after every release.
+•	Example: After new “dark mode” update → run regression pack → confirm login still works.
+
+5. Performance Testing (Smoke/Baseline Load, Stress/Spike)
+What: Test how system behaves under different loads.
+Steps:
+ Smoke Load: Run 5 users → system responds fine.
+	Baseline Load: 50 users → check average response.
+	Stress: Push 500+ users → check when system breaks.
+	Spike: Suddenly jump from 50 → 300 users.
+Example: API slows down at 200 users/sec → report to dev team.
+
+6. Database Validation for CRUD Integrity
+What: Check Create, Read, Update, Delete operations.
+Steps:
+•	Register a user → verify record inserted in DB.
+•	Fetch user → check correct details.
+•	Update profile → confirm DB update.
+•	Delete → confirm record removed.
+Example: Insert new event in “Events” table → verify event appears on UI.
+
+7. UAT Support & Training
+What: Help business users validate system before go-live.
+Steps:
+Prepare UAT test scenarios in simple language.
+Guide end-users to execute tests.
+Collect feedback/issues → log in Jira.
+Example: Train staff to test “create invoice” flow in a finance app.
+
+8. Defect Lifecycle Management; Severity/Priority Matrix; Defect Triage
+What: Handle bugs from discovery → closure.
+Steps:
+Tester finds bug → logs in Jira with steps/screenshots.
+Assign Severity (impact) & Priority (business need).
+Attend triage meeting → decide fix order.
+Example:
+	Severity 1 + Priority High = Login broken → fix immediately.
+  Severity 3 + Priority Low = UI color mismatch → fix later.
+
+9. Traceability to BA Stories
+What: Map test cases to business requirements.
+Steps:
+•	Take BA story: “User can reset password.”
+•	Link test cases → Verify reset email, token validity, new password login.
+•	Ensure every story has at least 1 test case.
+Example: Traceability matrix → shows all requirements are tested.
+
