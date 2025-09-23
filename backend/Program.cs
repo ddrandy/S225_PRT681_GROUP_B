@@ -21,7 +21,8 @@ builder.Services.AddCors(o =>
         .AllowCredentials()
         .WithOrigins(
             "http://localhost:5174",
-            "http://127.0.0.1:5174"
+            "http://127.0.0.1:5174",
+            "https://ntevent.randytech.top"
         ));
 });
 

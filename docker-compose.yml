@@ -28,6 +28,7 @@ services:
       Jwt__Issuer: "NtEvents"
       Jwt__Audience: "NtEventsClient"
       Jwt__Key: "REPLACE_WITH_A_LONG_RANDOM_SECRET"
+      EnableSwagger: "true"
     depends_on:
       mssql:
         condition: service_healthy
