@@ -27,7 +27,7 @@ services:
       ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True"
       Jwt__Issuer: "NtEvents"
       Jwt__Audience: "NtEventsClient"
-      Jwt__Key: "REPLACE_WITH_A_LONG_RANDOM_SECRET"
+      Jwt__Key: "xhMn9HXvLcTjZs/yWRTCOTtvaUa+9bgBkwK6jQvda4U="
       EnableSwagger: "true"
     depends_on:
       mssql:

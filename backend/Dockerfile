@@ -10,4 +10,4 @@ WORKDIR /app
 COPY --from=build /app/publish ./
 ENV ASPNETCORE_URLS=http://0.0.0.0:5248
 EXPOSE 5248
-ENTRYPOINT ["dotnet", "NtEvents.Api.dll"]   # adjust if your dll name differs
+ENTRYPOINT ["dotnet", "NtEvents.Api.dll"]
