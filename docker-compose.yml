@@ -40,5 +40,6 @@ services:
       context: .
       dockerfile: frontend/Dockerfile
     container_name: ntevents-web
+    env_file: frontend/.env.docker
     ports:
       - "127.0.0.1:8088:80"
