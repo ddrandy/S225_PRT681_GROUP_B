@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -28,7 +27,7 @@ services:
       ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=Your_password123;Encrypt=True;TrustServerCertificate=True"
       Jwt__Issuer: "NtEvents"
       Jwt__Audience: "NtEventsClient"
-      Jwt__Key: "replace-with-a-long-random-prod-secret"
+      Jwt__Key: "+O9ChwwzdeOHG85DrRIf7+/k2XbdAJBSchiZ5qEaRW7tRlgRjeebMk1DXNh8MYv4trI1VWKGsmOLXuXjdJy0Ng=="
     depends_on:
       mssql:
         condition: service_healthy
