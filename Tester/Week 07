@@ -1,0 +1,193 @@
+1. Test cases to Agro Scan ’s requirements & user stories:
+Functional Test Cases
+User Management (Register / Login / Logout)
+
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Actual Result
+UM-001	Register with valid data	Unique email	Open Register → fill Username, Email, Password, Confirm → Submit	Account created; success message; user auto-logged in or redirected to login per spec	
+UM-002	Register with existing email	Email already exists	Register with same email	Validation error “Email already in use”	
+UM-003	Password policy validation	Weak password (e.g., abc123)	Register with weak password	Error explains policy (length/complexity)	
+UM-004	Invalid email format	abc@	Register with invalid email	Error “Invalid email format”	
+UM-005	Required fields	Leave any required field empty	Submit	Inline required-field error shown; no account created	
+UM-006	Login with username	Existing user	Open Login → enter Username + valid password → Submit	Login succeeds; redirected to dashboard/home	
+UM-007	Login with email	Existing user	Login using Email + password	Login succeeds	
+UM-008	Login failure (wrong password)	Existing user	Attempt login with wrong password	Error “Invalid credentials”; remains on login	
+UM-009	Case-insensitive username/email	Existing user	Login using different case for email/username	Login works (if case-insensitive by design)	
+UM-010	Logout	Logged-in user	Click Logout	Session ended; user redirected to home/login	High
+UM-011	Session persistence	Logged-in user	Refresh/ revisit site	User remains logged in until logout/expiry	Medium
+UM-012	Access control (auth pages)	Not logged in	Hit /account or /dashboard	Redirect to login	High
+
+B. Search & Filter
+
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+SR-001	Keyword search returns matches	Events seeded with “Music” in title/desc	Enter “Music” → Search	List shows only matching events; keyword highlighted (if supported)	High	SR-001	Keyword search returns matches
+SR-002	Keyword no results	No matches	Search “xyz123”	“No results” message; 0 items	Medium	SR-002	Keyword no results
+SR-003	Category filter	Categories exist	Choose Category “Sports” → Apply	Only “Sports” events shown	High	SR-003	Category filter
+SR-004	Date range filter	Events across dates	Select Start/End dates → Apply	Events within date range shown	High	SR-004	Date range filter
+SR-005	Region filter	Regions exist	Select “Darwin” → Apply	Only Darwin-region events shown	High	SR-005	Region filter
+SR-006	Combined filters	Category + Date + Region	Apply all filters + keyword	Results satisfy all filter constraints	High	SR-006	Combined filters
+SR-007	Clear filters	Filters applied	Click “Clear All”	All filters reset; full list restored	Medium	SR-007	Clear filters
+SR-008	Pagination / infinite scroll	> page size events	Go to next page / scroll	Next page loads; state persists (filters stay)	Medium	SR-008	Pagination / infinite scroll
+SR-009	Empty keyword treated safely	Blank keyword	Click Search	Either full list or prompt to enter keyword (per spec)	Low	SR-009	Empty keyword treated safely
+
+ Event Submission (User) → Admin Approval
+
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+EVS-001	Submit event with valid data	Logged-in regular user	Open Submit Event → Fill Title, Desc, Start/End, Address, Category, Tags, Image → Submit	Submission saved with Pending status; success message	High	EVS-001	Submit event with valid data
+EVS-002	Missing required fields	Logged-in user	Submit with missing Title/Date	Inline errors; not submitted	High	EVS-002	Missing required fields
+EVS-003	Invalid time range	End < Start	Submit	Validation error “End time must be after start”	High	EVS-003	Invalid time range
+EVS-004	Image upload constraints	Large/invalid format	Choose > max size or unsupported type	Upload rejected with clear error	Medium	EVS-004	Image upload constraints
+EVS-005	Pending not visible publicly	Event submitted	Log out → view public list	Pending event not visible	High	EVS-005	Pending not visible publicly
+EVS-006	Admin approves	Admin exists	Admin → Events → Open pending → Approve	Status changes to Approved; now visible in public list	High	EVS-006	Admin approves
+EVS-007	Admin rejects	Admin exists	Admin rejects with reason	Status Rejected; user sees reason in dashboard (if spec)	Medium	EVS-007	Admin rejects
+EVS-008	Edit before approval	Submitter edits	User Dashboard → Edit event	Changes saved; remains pending	Medium	EVS-008	Edit before approval
+EVS-009	Resubmit after reject	Rejected exists	Edit fields → Resubmit	Status to Pending; visible to admin for re-review	Medium	EVS-009	Resubmit after reject
+
+Bookmark & Share
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+BM-001	Bookmark an event (logged in)	Logged-in user	Open event detail → Click Bookmark	Event saved to user’s favorites; icon toggles	Medium	BM-001	Bookmark an event (logged in)
+BM-002	View bookmarks	Bookmarked items exist	Go to My Bookmarks	All bookmarked events listed	Medium	BM-002	View bookmarks
+BM-003	Unbookmark	Bookmarked exists	Click Bookmark again	Removed from favorites	Medium	BM-003	Unbookmark
+BM-004	Bookmark requires login	Not logged in	Click Bookmark	Redirect to login or prompt to sign in	High	BM-004	Bookmark requires login
+BM-005	Share to Facebook/Twitter/IG	Public event	Click Share → choose platform	Correct share URL opens with event link/metadata	Medium	BM-005	Share to Facebook/Twitter/IG
+BM-006	Copy link	Any event	Click Copy Link	Link copied; confirmation toast	Low	BM-006	Copy link
+
+Event Registration (User)
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+REG-001	Register with valid data	Event open for registration	On event detail → fill Name, Email, (Phone optional) → Submit	Success confirmation page/message	High	REG-001	Register with valid data
+REG-002	Invalid email	—	Enter abc@ → Submit	Error “Invalid email format”	High	REG-002	Invalid email
+REG-003	Required fields missing	—	Leave Name/Email empty → Submit	Required-field errors	High	REG-003	Required fields missing
+REG-004	Duplicate registration rule	Email already registered (if restricted)	Register same email again	Error “Already registered” (if spec) or allowed duplicates (per spec)	Medium	REG-004	Duplicate registration rule
+REG-005	Registration closed	Event past/closed	Try to register	Disabled form or message “Registration closed”	Medium	REG-005	Registration closed
+REG-006	Confirmation email (if applicable)	Email service configured	Submit registration	Confirmation email sent (check outbox/logs in test env)	Low	REG-006	Confirmation email (if applicable)
+
+Admin – Manage Users
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+ADM-USER-001	View user list	Admin logged in	Admin → Users	Paginated list of users shown	Medium	ADM-USER-001	View user list
+ADM-USER-002	Upgrade user level	Target user exists	Open user → Change level/role → Save	Role updated; audit entry (if spec)	High	ADM-USER-002	Upgrade user level
+ADM-USER-003	Suspend account	Target user exists	Suspend user	User cannot log in; status reflects “Suspended”	High	ADM-USER-003	Suspend account
+ADM-USER-004	Suspended login blocked	Suspended user	Attempt login	Login blocked; appropriate message	High	ADM-USER-004	Suspended login blocked
+ADM-USER-005	Role permissions enforced	Admin & regular accounts	Try admin page as regular	Access denied (403) or redirect to login	High	ADM-USER-005	Role permissions enforced
+
+Admin – Manage Events
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+ADM-EVT-001	Create event (admin)	Admin	Admin → New Event → fill valid data → Save	Event created as Approved (or Draft per spec)	High	ADM-EVT-001	Create event (admin)
+ADM-EVT-002	Edit event	Admin + event exists	Admin → Edit → Save	Changes visible on public page	High	ADM-EVT-002	Edit event
+ADM-EVT-003	Approve pending	Pending exists	Admin → Approve	Moves to public list	High	ADM-EVT-003	Approve pending
+ADM-EVT-004	Mark as recommended	Event exists	Toggle Recommended	Event appears in recommended/popular section	Medium	ADM-EVT-004	Mark as recommended
+ADM-EVT-005	Delete event	Event exists	Delete → confirm	Event removed; not visible in public or search	High	ADM-EVT-005	Delete event
+ADM-EVT-006	Audit log (optional)	Audit enabled	Perform create/edit/delete	Audit entries recorded (actor, time, action)	Low	ADM-EVT-006	Audit log (optional)
+
+Admin – View / Export Registrations
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+ADM-REG-001	View registrants list	Event with registrations	Admin → Event → Registrants	List displays with Name, Email, Phone (if provided), timestamp	High	ADM-REG-001	View registrants list
+ADM-REG-002	Export CSV	Registrants exist	Click Export CSV	CSV downloaded with correct headers & data	High	ADM-REG-002	Export CSV
+ADM-REG-003	Empty list export	No registrants	Export	CSV contains headers, no rows	Medium	ADM-REG-003	Empty list export
+ADM-REG-004	Filtering/Sorting (if supported)	Many registrants	Apply sort/filter	UI updates list accordingly	Low	ADM-REG-004	Filtering/Sorting (if supported)
+
+Event Management (List / Details / Sorting / Maps)
+ID	Scenario	Preconditions / Test Data	Steps	Expected Result	Priority	ID	Scenario
+EL-001	Event list shows essential info	Approved events exist	Open Events list	Each card shows Title, Time, Venue, Category, Thumbnail	High	EL-001	Event list shows essential info
+EL-002	Event details displays full info	Event exists	Open event detail	Title, Description, Start/End, Venue, Suburb, Image shown	High	EL-002	Event details displays full info
+EL-003	Open in Maps link works	Event with address	Click Open in Google Maps	Opens correct map with address	High	EL-003	Open in Maps link works
+EL-004	Registration form on details	Event open	Verify form presence; submit valid	Success confirmation (links to REG tests)	High	EL-004	Registration form on details
+SORT-001	Sort by date	Multiple events	Choose Sort: Date	List ordered ascending/descending per spec	Medium	SORT-001	Sort by date
+SORT-002	Sort by category	Multiple categories	Sort Category	Group/ordering reflects category selection	Medium	SORT-002	Sort by category
+SORT-003	Sort by popularity/recommended	Data present	Sort Popularity/Recommended	Recommended/popular events appear first	Medium	SORT-003	Sort by popularity/recommended
+EL-005	No events edge case	None approved	Open list	“No events available” message; no errors	Low	EL-005	No events edge case
+
+
+Non-Functional Test Cases
+Performance( jmeter)
+Test Case ID	Objective	Precondition	Steps	Expected Result	Actual Result
+JMeter-TC-01	Validate search results load within 2 seconds	JMeter installed, event API endpoint available	1. Create Test Plan in JMeter2. Add Thread Group: 100 users, Ramp-up: 30s3. Add HTTP Sampler (Search API /events/search?q=music)4. Add Listener (Summary Report)	95% of requests should respond in ≤ 2000 ms	
+JMeter-TC-02	Validate event detail page loads within 3 seconds	JMeter setup with endpoint /events/{id}	1. Configure 50 concurrent users2. Send HTTP GET request for event detail3. Measure response time	Response ≤ 3000 ms for all events	
+JMeter-TC-03	Stress test event search	JMeter configured	1. Increase user load gradually up to 500 users2. Observe response times and error rate	System should degrade gracefully (response >2s but no crash)	
+
+Test Case ID	Objective	Precondition	Steps	Expected Result	Actual Result
+API-TC-01	Verify event search API returns results within 2s	Postman/SoapUI installed	1. Send GET /events/search?q=music2. Check response time and schema	Status 200, Response ≤ 2000 ms, schema matches	
+API-TC-02	Verify event registration API validates email	API endpoint available	1. Send POST /events/register with email=abc@2. Check response	Error: Invalid email format	
+API-TC-03	Verify JWT token required for admin API	Valid/Invalid tokens available	1. Call /admin/events without token2. Call with invalid token	401 Unauthorized in both cases	
+API-TC-04	Verify user password encryption (via API response)	Test environment	1. Register user2. Inspect API response/logs	No plain password should appear in payload/log	
+
+Security :
+Test Case ID	Objective	Precondition	Steps	Expected Result	Actual Result
+ZAP-TC-01	Check SQL Injection on search	OWASP ZAP proxy configured	1. Intercept request /events/search?q=2. Inject payload music' OR '1'='1	System should sanitize input, return error or no data	
+ZAP-TC-02	Check XSS vulnerability	ZAP setup with intercept	1. Input <script>alert(1)</script> into search box2. Monitor response	No script should execute; system escapes HTML	
+ZAP-TC-03	Verify password encryption	Test DB access or API response logs	1. Register user with password Test@1232. Inspect stored password (via DB/logs if test env allows)	Password must be hashed (bcrypt/SHA-256), not plain text	
+ZAP-TC-04	Test admin access control	Admin portal URL known	1. Try accessing /admin/dashboard without login2. Send request with invalid token	Access denied (401/403 error)	
+
+Test Case ID	Objective	Precondition	Steps	Expected Result	Actual Result
+SEL-TC-01	Verify search function works on UI	Browser + app deployed	1. Open homepage2. Enter keyword Music in search3. Click search	Event list shows relevant results within 2s	
+SEL-TC-02	Verify form validation for registration	App deployed	1. Open registration page2. Leave fields blank and submit	System shows error messages for required fields	
+SEL-TC-03	Verify invalid email format handling	Browser available	1. Enter abc@ as email2. Submit registration form	Error message “Invalid email format”	
+SEL-TC-04	Verify responsive design (mobile view)	Selenium Grid + Device emulation	1. Open site in 375px width (iPhone view)2. Browse events	Title, date, venue visible without scroll	
+SEL-TC-05	Verify successful login/logout	Valid user credentials	1. Login with valid credentials2. Logout	User should log in and out successfully	
+
+2. Automation testing tool and do a sample test / POC of automation
+
+
+3. Knowledge Document: Software Testing Options & Methodologies
+1. Introduction
+Testing is a critical part of the Software Development Life Cycle (SDLC). It ensures that applications are reliable, secure, user-friendly, and meet business requirements. Choosing the right testing methodologies depends on project scope, risk, technology, and delivery timelines.
+2. Categories of Testing
+2.1 Functional Testing
+Validates what the system does against the specified requirements.
+•	Unit Testing – Tests individual components or modules (e.g., a function or API endpoint).
+•	Integration Testing – Ensures modules work correctly together.
+•	System Testing – Validates the entire system’s functionality.
+•	User Acceptance Testing (UAT) – Final validation by business stakeholders/end-users.
+Tools: JUnit, NUnit, Selenium, Postman.
+
+2.2 Non-Functional Testing
+Validates how the system performs.
+•	Performance Testing – Measures response time, scalability, and reliability.
+o	Subtypes: Load Testing, Stress Testing, Endurance Testing.
+•	Security Testing – Identifies vulnerabilities, data leaks, or weak authentication.
+•	Usability Testing – Ensures intuitive user experience (UX).
+•	Compatibility Testing – Checks performance across devices, browsers, OS.
+Tools: JMeter, LoadRunner, OWASP ZAP, BrowserStack.
+
+2.3 Automated vs. Manual Testing
+•	Manual Testing – Human testers execute test cases; useful for exploratory, usability, and ad-hoc testing.
+•	Automated Testing – Uses scripts/tools for regression, performance, and repetitive tasks.
+Trade-off: Manual is flexible but slow; Automation is fast but requires setup/maintenance.
+3. Testing Methodologies
+3.1 Agile Testing
+•	Integrated with Agile development (Scrum/Kanban).
+•	Continuous feedback, test-driven by user stories.
+•	Test types: Acceptance Test-Driven Development (ATDD), Behavior-Driven Development (BDD).
+•	Benefit: Early bug detection, faster releases.
+3.2 Waterfall Testing
+•	Sequential phase-based (requirements → design → build → test → deploy).
+•	Testing occurs late in the cycle.
+•	Benefit: Structured, good for stable requirements.
+•	Risk: Bugs found late, high cost of rework.
+3.3 V-Model (Verification & Validation)
+•	Testing phase mirrors development phase.
+•	Each stage has associated testing (e.g., Requirements → Acceptance Testing).
+•	Benefit: Structured mapping of test activities.
+3.4 Risk-Based Testing
+•	Focuses on high-risk areas (e.g., financial transactions, authentication).
+•	Benefit: Prioritizes critical features under tight deadlines.
+3.5 Shift-Left Testing
+•	Testing is introduced earlier in the SDLC.
+•	Encourages Test-Driven Development (TDD) and Continuous Integration (CI).
+•	Benefit: Catches bugs early, reduces costs.
+4. Best Practices
+•	Define clear Test Plans & Test Cases.
+•	Maintain traceability between requirements and test cases.
+•	Adopt CI/CD pipelines with automated regression testing.
+•	Include exploratory testing to find edge cases.
+•	Regularly update test data and test environments.
+5. Summary Table
+Methodology	Focus Area	When to Use	Example Tools
+Agile Testing	Continuous testing	Iterative, fast delivery	Cucumber, JUnit
+Waterfall	Sequential phase	Fixed, stable projects	Manual, HP ALM
+V-Model	Verification & Validation	High compliance projects	Selenium, QTP
+Risk-Based	Critical areas	Limited resources	Risk Matrix
+Shift-Left	Early testing in SDLC	CI/CD pipelines	GitHub Actions, Jenkins
+
+6. Conclusion
+Selecting the right mix of testing methodologies ensures software quality, reduces production risks, and improves customer satisfaction. Teams should tailor the testing approach based on project needs, timelines, and business priorities.
+
+
