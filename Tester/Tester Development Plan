@@ -13,293 +13,256 @@ Development Plan For Tester
 •	Cloud Awareness: AWS or Azure (very basic awareness, not deep)
 2. Create a nice table of the above list and identify all possible resoureces links 
 
+Tool / Concept	LinkedIn Learning Course (Preferred)	Free Resources (YouTube / Docs)
+JIRA 	Learning Jira Software	Automation step by step
+Zephyr		Automation step by step
+Jmeter		Automation step by step
+Selenium	Selenium Essential Training	Automation step by step
+Postman	Postman Essential Training	Automation step by step
+OWsap Zap		SecNet Lab
 
-			| Tool / Concept        | LinkedIn Learning Course (Preferred) | Free Resources (YouTube / Docs)                   | Done / Processing |
-|------------------------|--------------------------------------|--------------------------------------------------|-------------------|
-| JIRA (Agile/Test Mgmt) | Learning Jira Software              | Atlassian YouTube, Jira docs                     |                   |
-| TestRail / Zephyr      | Test Case Management with Zephyr    | Free tutorials on Guru99 / YouTube               |                   |
-| Bugzilla               | No LinkedIn official                | TutorialsPoint Bugzilla videos                   |                   |
-| Selenium               | Selenium Essential Training         | Naveen Automation YouTube                        |                   |
-| Postman                | Postman Essential Training          | Postman YouTube, free docs                       |                   |
-| Cypress                | End-to-End Testing with Cypress     | Cypress.io docs, YouTube                         |                   |
-| SQL Basics             | SQL Essential Training              | W3Schools SQL, MySQL YouTube                     |                   |
-| Git / GitHub           | Git Essential Training              | GitHub Docs, freeCodeCamp                        |                   |
-| Jenkins (CI/CD)        | DevOps Foundations: CI/CD           | Jenkins official YouTube                         |                   |
-| Agile / Scrum          | Agile Foundations                   | Scrum Guide (scrumguides.org)                    |                   |
-| Cloud Basics (AWS)     | Cloud Computing Foundations         | AWS free tier intro videos                       |                   |
-
+SQL Basics		W3Schools SQL
+GitHub		GitHub Docs
+Jenkins (CI/CD)		Automation step by step
+Agile 	Agile testing	
+Cloud Basics (AWS)		
+		
 
 3. Create a two weeks plan to cover all section 2 identified courses/videos 
+Day	Tool / Topic	Learning Resource	Task	Notes to Capture (4 lines)
+1	Testing Foundations	LinkedIn	Methods	
+2	JIRA basics 	LinkedIn: Learning Jira Software +YouTube	Create a JIRA project, add a task	
+3	Zephyr 	 YouTube	Write 2 sample test cases	
+4	Zephyr	Youtube	Perform automation test	
+5	OWASP ZAP	Youtube	Perform Active scan, find alerts.	
+6	SoapUI	Youtube	Perform request	
+7	Jmeter	Youtube	Http request.	
+8	Postman 	LinkedIn: Postman Essential Training	Send a GET request to public API	
+9	Postman 	Postman YouTube 	Run a POST request	
+10	Selenium Basics	LinkedIn: Selenium Essential Training	Open browser → Google → Click search	
+11	SQL Basics	Youtube	Run SELECT * FROM users; query	
+12	Github	Youtube	Create repo and commit	
 
-| Day | Tool / Topic                   | Learning Resource                                    | Task (“Hello World”)                 | Notes to Capture (4 lines)                                   |
-|-----|--------------------------------|------------------------------------------------------|--------------------------------------|--------------------------------------------------------------|
-| 1   | JIRA basics (Agile + Test Mgmt)| LinkedIn: Learning Jira Software + Atlassian YouTube | Create a JIRA project, add a task    | What JIRA is, how you used it, why Agile teams use it, board |
-| 2   | Zephyr / TestRail (Test mgmt)  | Zephyr on LinkedIn or Guru99 YouTube                 | Write 2 sample test cases             | What a test case is, tool used, benefit, outcome             |
-| 3   | Bugzilla (Bug Tracking)        | TutorialsPoint YouTube                               | Log a fake bug                        | What bug tracking is, Bugzilla workflow, sample bug logged   |
-| 4   | Postman (API Basics)           | LinkedIn: Postman Essential Training                 | Send a GET request to public API      | What API testing is, request sent, response checked, learning|
-| 5   | Postman (Advanced basics)      | Postman YouTube official                             | Run a POST request                    | Diff GET/POST, what tested, why APIs matter, learning        |
-| 6   | Selenium Basics                | LinkedIn: Selenium Essential Training                | Open browser → Google → Click search  | What Selenium is, script written, what it tested, outcome    |
-| 7   | Weekly Review                  | Re-watch tricky topics                               | Collect all 4-line summaries          | Resume: update Skills + Courses + Projects for Week 1        |
+Day	Tool / Topic	Learning Resource	Task (“Hello World”)	Notes to Capture (4 lines)
+13	Cypress Basic		Run sample Cypress test	
+1	Jenkins	Youtube		
+11	Jenkins / CI Basics	DevOps CI/CD Foundations	Run sample Jenkins build (or watch demo if setup hard)	
+12	Agile / Scrum	Agile Foundations	Write sprint backlog (mock)	
+13	Cloud Awareness (AWS)	Cloud Computing Foundations	Launch AWS Free Tier account 	
+14	GitLab			
+15	Browser Developer Tools			
+16	VirtualBox, VMware			
+17	TestRail			
+18	Fiddler			
+19	LoadRunner			
 
-| Day | Tool / Topic            | Learning Resource                                  | Task (“Hello World”)                      | Notes to Capture (4 lines)                                      |
-|-----|--------------------------|----------------------------------------------------|-------------------------------------------|-----------------------------------------------------------------|
-| 8   | Cypress Basics           | LinkedIn: Cypress End-to-End Testing               | Run sample Cypress test                    | What Cypress is, setup, test run, learning                      |
-| 9   | SQL Basics               | LinkedIn: SQL Essential Training + W3Schools       | Run SELECT * FROM users; query             | What SQL is, query run, why useful for testers, learning        |
-| 10  | Git / GitHub             | LinkedIn: Git Essential Training                   | Create repo → commit file                   | What Git is, commit made, why testers use Git, outcome          |
-| 11  | Jenkins / CI Basics      | LinkedIn: DevOps CI/CD Foundations                 | Run sample Jenkins build (or watch demo)   | What CI/CD is, Jenkins role, benefit for QA, learning           |
-| 12  | Agile / Scrum            | LinkedIn: Agile Foundations                        | Write sprint backlog (mock)                | What Agile is, ceremonies, team roles, why testers matter       |
-| 13  | Cloud Awareness (AWS)    | LinkedIn: Cloud Computing Foundations              | Launch AWS Free Tier account (optional)    | What cloud is, example AWS service, why testers need awareness  |
-| 14  | Weekly Wrap-up           | Summarise all notes                                | Resume final update                        | Collect Skills / Courses / Projects into one doc                |
-
-4. C1: Create a catalog of top 20 behaviour questions 
-
-  Introduction & Background
-1.	Tell me about yourself.
-Context: I’ve recently built my skills in software testing through LinkedIn courses and hands-on projects.
-Action: I focused on tools like JIRA, Postman, and Selenium, and applied them in small projects.
-Result: I’m now keen to apply these skills in a professional environment and grow into a QA role.
-2.	Walk me through your resume.
-Context: My background includes IT study, practical projects, and retail/customer service work.
-Action: Alongside work, I completed online QA training and practised tools to prepare for software testing roles.
-Result: This mix gives me technical skills plus strong teamwork and communication experience.
-3.	Why are you interested in this role and our company?
-Context: I researched your company’s focus on delivering quality solutions.
-Action: I’m motivated by the chance to contribute to a team that values quality and continuous improvement.
-Result: It’s a great match for my skills and career goals.
-4.	What motivates you to work in software testing / IT?
-Context: I enjoy solving problems and ensuring things work properly.
-Action: Testing gives me that opportunity—finding issues early and improving quality.
-Result: It motivates me to know my work helps deliver better products for users.
-
-Work Style & Productivity
-5.	How do you prioritise tasks when you have multiple deadlines?
-Context: In retail and projects, I often had competing priorities.
-Action: I break down tasks, use a simple to-do list or board, and confirm priorities with my manager.
-Result: This helps me stay on track and deliver on time.
-6.	Example of managing a complex task or project.
-Context: During my study, I had to learn multiple tools in a short time.
-Action: I created a schedule, focused on one tool per day, and took notes for quick reference.
-Result: I completed the learning plan and could demonstrate each tool in interviews.
-7.	How do you stay organised and ensure quality?
-Context: I value structure in my work.
-Action: I document steps, use checklists, and review my work before sharing.
-Result: This reduces errors and shows I take responsibility for quality.
-8.	How do you handle stress or pressure?
-Context: In past jobs, peak hours were stressful.
-Action: I focused on staying calm, breaking tasks into smaller steps, and asking for help when needed.
-Result: I delivered my work and supported my team without burning out.
-
-Teamwork & Collaboration
-9.	Tell me about a time you worked successfully in a team.
-Context: At Coles Express, teamwork was essential.
-Action: I communicated clearly, shared tasks, and supported colleagues when busy.
-Result: We served customers efficiently and maintained store standards.
-10.	Describe a conflict with a colleague and how you resolved it.
-Context: I once disagreed with a colleague on task priority.
-Action: I listened, explained my view, and suggested a compromise.
-Result: We resolved it quickly and got the job done together.
-11.	How do you handle feedback?
-Context: I received feedback on my documentation style.
-Action: I listened carefully, asked clarifying questions, and adjusted my format.
-Result: My reports became clearer, and my manager appreciated the improvement.
-12.	How do you collaborate with developers or analysts?
-Context: In a project exercise, I had to work with peers acting as devs and BAs.
-Action: I clarified requirements, shared test cases, and raised issues clearly.
-Result: This made communication smoother and improved overall project flow.
-
-Problem-Solving & Adaptability
-13.	Describe a time you faced a challenge at work.
-Context: Once, a system was down during my shift.
-Action: I reported the issue, used backup processes, and kept customers informed.
-Result: The situation was managed without major complaints.
-14.	Example where you made a mistake.
-Context: Early on, I misfiled some data.
-Action: I admitted it, corrected it quickly, and set a checklist to avoid repeat errors.
-Result: The team appreciated my honesty and improvement.
-15.	Tell me about a time you quickly learnt something new.
-Context: I had to pick up Postman quickly for a mock project.
-Action: I watched tutorials, practised simple GET/POST requests, and documented results.
-Result: Within a day, I was confident to demo basic API tests.
-16.	How do you approach a problem when you don’t know the answer?
-Context: Sometimes a task is unfamiliar.
-Action: I research online, ask colleagues, and try small steps to learn.
-Result: I usually find the answer without delay and gain new skills.
-
-Communication & Stakeholder Management
-17.	How do you explain technical issues to non-technical people?
-Context: In retail, I explained system issues to customers.
-Action: I avoided jargon, used simple examples, and focused on the impact.
-Result: People understood and stayed calm.
-18.	Example of managing expectations with a manager/client.
-Context: A task once took longer than expected.
-Action: I informed my manager early, explained why, and gave a new timeline.
-Result: They appreciated my honesty and adjusted plans.
-
-Growth & Values
-19.	Where do you see yourself in 2–3 years?
-Context: I’m starting as an entry-level tester.
-Action: I plan to build solid testing skills, gain certifications, and grow into QA Analyst.
-Result: In 2–3 years, I aim to contribute to larger projects and mentor juniors.
-20.	What makes you a good fit for Aussie workplace culture?
-Context: I value teamwork and clear communication.
-Action: I listen, contribute, respect others, and stay approachable.
-Result: This aligns with the collaborative and respectful culture in Aussie companies.
-
-C2 – 20 Common Basic Tech Q&A (Entry-Level Tester)
+4. C1: 20 Common Basic Tech Q&A (Entry-Level Tester)
 Testing Fundamentals
 1.	What is the difference between verification and validation?
-Verification checks whether the product is built correctly (meets design/spec).
-Validation checks whether the right product is built (meets user needs).
+Verification : Checking if we built the product correctly, following the design or plan (e.g., checking code against the design).
+Validation : Checking if we built the right product that the user actually needs (e.g., checking if the software meets user needs).
 2.	What are functional vs non-functional testing? Give examples.
-Functional: tests what the system does (e.g. login works).
-Non-functional: tests how the system performs (e.g. speed, security, usability).
+Functional testing : Tests what the system feature does (e.g., checking if login works).
+Non-functional testing : Tests how the system works (e.g., speed, security, usability).
 3.	What is the Software Testing Life Cycle (STLC)?
-STLC covers phases like requirement analysis, test planning, test case design, test execution, defect reporting, and closure.
+It is a sequence of steps folowed during the testing process to ensure the software is tested correctly and meets quality standards. STLC covers phases like requirement analysis, test planning, test case design, test execution, defect reporting, and closure.
 4.	Explain smoke vs regression testing.
-Smoke: quick check to confirm build stability.
-Regression: ensures existing features still work after changes.
+Smoke Testing: A quick test done before full testing to check if the main functions of the software are working properly.
+Regression Testing :Testing to make sure new changes or updates haven’t broken any existing features of the software
 5.	Difference between manual and automation testing?
-Manual: tests done by humans step-by-step.
-Automation: scripts/tools run tests repeatedly.
+Manual Testing is perform manually by a human without using any tools, to find bugs.
+ Automation Testing perform by tools or scripts, where instructions are given to automatically check for defects.
 6.	What are positive test cases vs negative test cases?
-Positive: valid inputs to confirm system works.
-Negative: invalid inputs to check system handles errors gracefully.
-
+Positive Test Case : Tests the software with valid input to check if it works as expected.
+Negative Test Case : Tests the software with invalid or unexpected input to check if it handles errors properly
 Defects & Bug Tracking
 7.	What is a defect/bug, and how is it different from error and failure?
-Bug/defect: mismatch between expected and actual results.
+Bug/defect: mismatch or difference between expected and actual results.
 Error: human mistake in code/design.
-Failure: system doesn’t perform expected function.
+Failure: system doesn’t perform the expected function.
 8.	Explain defect life cycle.
-New → Assigned → Open → Fixed → Retest → Closed (or Reopen if issue persists).
-9.	What key details should you include in a bug report?
-Title, environment, steps to reproduce, expected vs actual result, severity, attachments/screenshots.
+Defect Life Cycle → The journey of a defect/bug from the time it is found until it is fixed and closed.
+Steps in Defect Life Cycle :
+New → Defect is reported for the first time.
+Assigned → Defect is assigned to a developer to fix.
+Open → Developer starts working on the defect.
+Fixed/Resolved → Developer fixes the defect.
+Retest → Tester checks if the defect is fixed.
+Closed → Defect is confirmed fixed and closed.
+Reopen → If the defect still exists, it is reopened.
 
+9.	What key details should you include in a bug report?
+Bug ID/Title – A short, clear name for the bug.
+Description – What the bug is and what went wrong. Step-by-step instructions to show the bug.
+ Expected Result – What should happen.
+Actual Result – What actually happened.
+ Severity/Priority – How serious or urgent the bug is.
+ Environment – Where the bug occurred (OS, browser, device, etc.).
+ Attachments – Screenshots, logs, or videos showing the bug.
 Test Design & Execution
 10.	What is a test case? Components?
-A test case defines input, action, and expected result.
-Components: ID, description, preconditions, steps, expected/actual results, status.
+Test Case : A document with steps, inputs, and expected results to check if a feature works correctly.
+Test Component : A specific part or module of the software that is tested, like a login page or payment feature
 11.	Difference between test plan and test strategy?
-Test plan: project-specific, details scope, schedule, resources.
-Test strategy: high-level approach for organisation (overall methodology).
+Test Plan : A document that describes what to test, how to test, who will test, and when to test. It’s a detailed plan for the testing process.
+Test Strategy : A high-level document that describes the overall approach and goals of testing, including tools, techniques, and standards to follow.
 12.	What is boundary value analysis? Example?
-Tests edge values at input boundaries.
-Example: age field (18–60) → test 17, 18, 60, 61.
+.Boundary Value Analysis (BVA) : A testing technique where you test the values at the edges or boundaries of input ranges, because errors often occur at the limits.
+Example: If an input accepts 1 to 10, you test 0, 1, 10, 11 to check for defects.
+
 13.	What is equivalence partitioning?
-Divides inputs into valid/invalid groups.
-Example: password length (6–12) → <6, 6–12, >12.
+Equivalence Partitioning (EP) : A testing technique where input data is divided into groups (partitions) that are expected to behave the same. You test one value from each group instead of all possible values.
+Example: If an input accepts 1–10:
+Valid partition: 1–10 : test  input 5
+Invalid partitions: <1: test input 0  & for >10 :  test input 11.
 
 Agile & Collaboration
 14.	What role does QA play in Agile methodology?
-QA works closely with devs and BAs throughout sprints, writing test cases early, testing stories, and giving quick feedback.
+QA is involved throughout the development process, not just at the end. They collaborate with developers and product owners and help define acceptance criteria and user stories. They perform continuous testing during each sprint and ensure the product meets quality standards before release.
 15.	What happens in a daily stand-up?
-Team shares yesterday’s work, today’s plan, and blockers.
-Quick sync, not a detailed meeting.
+A short daily meeting where each team member Share progress, plan the day, and highlight problems or blockers.
 
 Tools & Basics
 16.	What is JIRA used for in testing?
 JIRA is used for managing tasks, user stories, test cases, and defect tracking in Agile projects.
 17.	What is API testing, and why is it important?
-API testing validates data exchange between systems.
-Ensures backend works correctly before UI is built.
+API Testing the Application Programming Interface (API) to check if it works correctly, returns the right data, and handles requests properly. 
+It ensures the backend works correctly, systems communicate properly, and bugs are caught early before affecting user.
 18.	What is SQL, and why do testers need to know it?
 SQL is used to query databases.
-Testers need it to check data accuracy and backend validation.
+Testers need it to check and verify data.
 19.	What is Selenium, and how does it help in testing?
-Selenium is an open-source automation tool for web apps.
-It helps automate repetitive browser tests.
+Selenium is a tool that automates testing of web applications to save time and reduce manual effort.
 20.	Why is version control (like Git) useful for testers?
-Git tracks changes to test scripts and documents.
-Helps collaborate safely with developers and QA team.
+Version control helps testers track changes, test the right version, and collaborate with developers easily.
 
-C2: 20 Resume/Project-specific Technical Q&A (Entry-Level Tester)
- 
-JIRA / Test Management
-1. Can you explain how you created and managed a test case in JIRA/Zephyr?
-Context: In my practice project, I set up Zephyr inside JIRA.
-Action: I created a test case with steps, expected results, and linked it to a user story.
-Result: It gave me hands-on understanding of managing test cases in Agile tools.
-2. What’s the difference between an epic, story, task, and bug in JIRA?
-Epic = large feature, Story = user requirement, Task = specific work, Bug = defect found.
-I practised by creating each in JIRA to see how they link together.
+C2:  Resume/Project-specific Technical Q&A (Entry-Level Tester)
+JMeter (Performance Testing)
+1. What is JMeter and when would you use it?
+ JMeter is an open-source tool used for performance, load, and stress testing of web applications, APIs, and servers. I would use it to simulate multiple users accessing the system at the same time to check how the application performs under load.
+2. How do you create a basic test in JMeter?
+Steps:
+Create a Test Plan.
+Add a Thread Group (define number of users, ramp-up time, loop count).
+Add a Sampler (e.g., HTTP Request).
+Add Listeners (View Results Tree, Summary Report) to see results.
+Run the test.
+3. What is the difference between load testing and stress testing in JMeter?
+ Load testing checks how the system performs under expected user load. 
+Stress testing pushes beyond normal limits to see when the system breaks.
+Jira (Bug/Project Management)
+4. How do you log a bug in Jira?
+ Steps:
+Go to the project → click Create.
+Select Issue Type = Bug.
+Enter details: Summary, Description (steps to reproduce, expected vs actual), Severity/Priority, Environment, Attach screenshot/log.
+Assign to developer.
+5. What is the difference between Epic, Story, Task, and Bug in Jira?
+Epic: High level of requirement.
+Story: Smaller functionality under Epic.
+Task: Work item assigned to team members.
+Bug: Defect/issue in the system.
+6. How do you track the status of a bug in Jira?
+ By checking its workflow (Open → In Progress → In Review → Resolved → Closed). Status updates show progress.
+Zephyr (Test Management in Jira)
+7. What is Zephyr used for?
+ Zephyr is a Jira plugin used for test case management. It helps create, organize, execute, and track test cases directly inside Jira.
+8. How do you execute a test case in Zephyr?
+Go to the test cycle.
+Select the test case.
+Select Test script
+Select Automate test
+Execute → choose status (Pass, Fail, Blocked, WIP).
+Attach evidence (screenshots, logs).
+8. Can Zephyr be linked with Jira issues?
+ Yes, test cases in Zephyr can be linked to Jira Stories/Bugs so you can trace requirements and defects.
+            9. Can you explain how you created and managed a test case in JIRA/Zephyr?
+In my practice project, I set up Zephyr inside JIRA. I created a test case with steps, expected results, and linked it to a user story.
+OWASP ZAP (Security Testing)
+10. What is OWASP ZAP used for?
+ It’s an open-source tool for finding security vulnerabilities in web applications, like SQL injection, XSS, or authentication issues.
+11. What is the difference between Active Scan and Passive Scan in ZAP?
+       Passive Scan: Monitors traffic without modifying requests (safe, non-intrusive).
+Active Scan: Actively attacks the app with payloads to find vulnerabilities.
+12. Give an example of a common vulnerability you can find with ZAP.
+ Cross-Site Scripting (XSS): injecting malicious scripts into input fields.
+ Postman (API Testing)
+13. How do you test an API in Postman?
+Select request type (GET, POST, PUT, DELETE).
+Enter API URL.
+Add headers (e.g., Content-Type, Authorization).
+Add request body (if needed).
+Send → check response (status code, body, time).
+14. What is the difference between GET and POST request in API testing?
+GET: Retrieves data (safe, no body).
+POST: Submits data (has request body, modifies server).
+15. How do you automate API tests in Postman?
+ Using Collections + Test scripts. You can write JavaScript in the “Tests” tab for assertions (e.g., check status code = 200).
+SoapUI (Basic API Testing for SOAP/REST)
+16. What is SoapUI used for?
+ It’s a tool for testing SOAP and REST APIs. It allows functional, security, and load testing.
+17. What’s the difference between SoapUI and Postman?
+     SoapUI: Supports both SOAP & REST APIs, more advanced for enterprise testing.
+Postman: Easier, mostly REST-focused, great for quick/manual testing.
+18. How do you create a SOAP request in SoapUI?
+Create a new SOAP project.
+Add the WSDL URL.
+Select operation → SoapUI auto-generates request XML.
+Enter parameters → Send → check response.
+Automation Tools (Selenium )
+19. How did you create your first Selenium script?
+I practised automating Google search. Wrote a simple Java Selenium script to open browser, enter text, and click search. It gave me confidence in writing automation basics.
+20. In your Selenium/Cypress project, what challenges did you face?
+Setting up Selenium with drivers was tricky. I followed tutorials, fixed PATH issues, and used simple examples. Once configured, I could run tests smoothly.
 
-Bug Tracking
-3. How do you log a bug in Bugzilla? What key fields should you always fill in?
-Context: In my Bugzilla exercise, I logged a sample login issue.
-Action: I filled in title, environment, severity, steps to reproduce, and attachments.
-Result: It showed me the importance of clear bug reports for devs.
-4. Can you explain the life cycle of a bug/defect from discovery to closure?
-New → Assigned → Open → Fixed → Retest → Closed (or Reopen).
-I practised this flow in Bugzilla to understand transitions.
+C2. Create a catalog of top 20 behaviour questions 
+  Introduction & Background
+1.	Tell me about yourself.
+I have recently built my skills in software testing through LinkedIn courses and Youtube for hands-on projects. I focused on tools like JIRA, Postman, and Selenium, and applied them in small projects. I’m now keen to apply these skills in a professional environment and grow into a QA role.
+2.	Walk me through your resume.
+As you can see, my background includes IT study, practical projects, and school work. Along this, I completed online course and and practised tools from courses and youtuve to prepare for software testing roles. That gives me technical skills with strong teamwork and communication experience.
+3.	Why are you interested in this role and our company?
+I researched this company’s focus on delivering quality solutions. I’m motivated by the chance to contribute to a team that values quality and continuous improvement. It’s a great match for my skills and career goals.
+4.	What motivates you to work in software testing / IT?
+ I have strong observation and analytical skills, which help me identify errors effectively. Software testing gives me the chance to apply these skills—finding issues early and improving overall quality. I feel motivated knowing that my work contributes to delivering better products for users.
 
-API Testing (Postman)
-5. What is an API, and why do testers need to test APIs?
-APIs allow systems to talk to each other.
-Testers validate data exchange before UI is ready, saving time and catching backend issues early.
-6. Show me an example of a GET and POST request you ran in Postman.
-Context: I tested a public “users” API.
-Action: I sent a GET to fetch users and a POST to add a dummy record.
-Result: I verified status codes (200/201) and checked response body.
-7. How would you verify the response of an API call in Postman?
-Context: While testing a sample API.
-Action: I checked status code, response time, and body fields using Postman’s test tab.
-Result: This confirmed the API worked as expected.
+Work Style & Productivity
+5.	How do you prioritise tasks when you have multiple deadlines?
+In my experience with after-school care, childcare, and university projects, I often faced competing priorities. To manage this, I break tasks into smaller steps, create a clear to-do list, and regularly check in with my supervisor or team members to confirm priorities. This approach helps me stay organised, focus on what’s most urgent, and ensure I deliver tasks on time.
+6.	Example of managing a complex task or project.
+During my study, I had to learn multiple tools in a short time. I created a schedule, focused on one tool per day, and took notes for quick reference. I completed the learning plan and could demonstrate each tool in interviews.
+7.	How do you stay organised and ensure quality?
+I stay organised by planning my tasks, making a list, and doing one step at a time. To make sure my work is good, I check it carefully and ask for feedback if needed.
+8.	How do you handle stress or pressure?
+In my childcare work, the job is challenging and stressful, I learned to stay calm and patient in there. For university projects, I manage pressure by breaking tasks into smaller steps and asking for help when needed. This helps me complete my work on time and support my team.
+Teamwork & Collaboration
+9.	Tell me about a time you worked successfully in a team.
+In our university project, we used to do team projects and successfully submitted and passed. In my childcare job, our team had to organise a small event for the children. We divided tasks; some of us prepared activities, others handled snacks and decorations. I coordinated with my teammates, helped where needed, and made sure everyone knew their responsibilities. The event went smoothly, and the children really enjoyed it. 
+10.	Describe a conflict with a colleague and how you resolved it.
+Luckily, I have a good relationship with my colleagues. Sometimes we have disagreements, but I listen to their ideas first and then share my opinion, so we can find a solution together.
+11.	How do you handle feedback?
+I often ask for feedback on my work. When I receive it, I listen carefully, ask questions if I’m not sure, and make improvements. I believe feedback helps me do better.
+12.	How do you collaborate with developers or analysts?
+In a project exercise, I had to work with peers as devs and BAs. I clarified requirements, shared test cases, and raised issues clearly. This made communication smoother and improved overall project flow.
 
-Automation Tools (Selenium / Cypress)
-8. How did you create your first Selenium script?
-Context: I practised automating Google search.
-Action: Wrote a simple Java Selenium script to open browser, enter text, and click search.
-Result: It gave me confidence in writing automation basics.
-9. What’s the difference between Selenium and Cypress?
-Selenium: works across browsers/languages, more flexible.
-Cypress: faster setup, focused on modern JS apps.
-I tried both to see pros/cons for small projects.
-10. In your Selenium/Cypress project, what challenges did you face?
-Context: Setting up Selenium with drivers was tricky.
-Action: I followed tutorials, fixed PATH issues, and used simple examples.
-Result: Once configured, I could run tests smoothly.
+Problem-Solving & Adaptability
+13.	Describe a time you faced a challenge at work.
+Once, a system was down during my shift. I reported the issue to the manager. I used backup processes and kept children’s parents informed. The situation was managed without major complaints.
+14.	Example where you made a mistake.
+Once, I misfiled a document in the wrong folder. I admitted it, corrected it quickly, and set a checklist to avoid repeat errors. My boss appreciated my honesty and improvement.
+15.	Tell me about a time you quickly learnt something new.
+I had to pick up Postman quickly for a mock project. I watched tutorials, practised simple GET/POST requests. Within a day, I was confident to demo basic API tests.
+16.	How do you approach a problem when you don’t know the answer?
+Sometimes a task is unfamiliar. I research online, ask team members, and try small steps to learn. I try to find the answer without delay and gain new skills to solve the problem.
 
- SQL / Database Testing
-11. Write a SQL query to find all users older than 30.
-SELECT * FROM users WHERE age > 30;
-•	Simple query I practised in MySQL sandbox.
-12. Why is SQL knowledge important for a tester?
-•	Testers validate backend data, check CRUD operations, and confirm system consistency.
-•	Knowing SQL means we don’t rely only on UI.
-13. Can you explain how you tested data consistency using SQL queries?
-Context: I had a mock e-commerce DB.
-Action: I ran queries to check order details matched user IDs across tables.
-Result: It helped me understand cross-table validation.
+Communication & Stakeholder Management
+17.	How do you explain technical issues to non-technical people?
+As I mentioned earlier, In childcare, I explained system issues to parents. I avoided jargon, used simple examples, and focused on the impact. They understood and stayed calm.
+18.	Example of managing expectations with a manager/client.
+ Some tasks once took longer than expected. I informed my supervisor early, explained the reasons, and gave a new timeline. They appreciated my honesty and adjusted plans.
+Growth & Values
+19.	Where do you see yourself in 2–3 years?
+I’m starting as an entry-level tester. I plan to build solid testing skills, gain certifications, and grow into QA Analyst. In 2–3 years, I aim to contribute to larger projects and mentor juniors.
+20.	What makes you a good fit for Aussie workplace culture?
+I value teamwork and clear communication. I listen, contribute, respect others, and stay calm and approachable. This aligns with the collaborative and respectful culture in Aussie companies.
 
- Version Control (Git/GitHub)
-14. How did you use GitHub in your projects?
-Context: I used GitHub to store my practice test scripts.
-Action: I created a repo, committed changes, and pushed updates.
-Result: It gave me version history and collaboration practice.
-15. Why is version control important for testers?
-•	Test scripts and docs change often.
-•	Git helps track changes, rollback safely, and collaborate with dev teams.
-
-CI/CD Awareness (Jenkins)
-16. What is Continuous Integration and why is it important for QA?
-•	CI integrates code frequently into a shared repo.
-•	QA benefits by testing earlier builds and catching defects faster.
-17. Can you describe a simple Jenkins pipeline you studied or ran?
-Context: I explored Jenkins basics.
-Action: Created a freestyle job to pull from GitHub and run a sample test.
-Result: I understood how automation fits into CI/CD pipelines.
-
-Agile / Scrum
-18. What role does a tester play in Agile ceremonies?
-Testers join sprint planning, daily stand-ups, and retros.
-Action: I practised by writing test cases alongside user stories.
-Result: This showed how QA contributes continuously, not at the end.
-19. Can you explain the difference between regression testing and smoke testing?
-Smoke = quick check of major functions.
-Regression = detailed re-check of existing features after changes.
-
-Cloud Awareness
-20. Why do testers need to be aware of cloud platforms like AWS or Azure? Can you give an example?
-Apps are often hosted on cloud.
-Example: A tester may check if an app runs correctly across AWS environments (e.g., S3 storage, EC2 instances).
-Awareness helps align testing with deployment setups
