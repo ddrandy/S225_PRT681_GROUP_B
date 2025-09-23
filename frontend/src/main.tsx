@@ -2,30 +2,34 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import EventsList from "./pages/EventsList";
-import EventDetail from "./pages/EventDetail";
-import RootLayout from "./layouts/RootLayout"; // <-- add
-import Login from "./pages/Login";
+import RootLayout from "./layouts/RootLayout";
+import { Home } from "./pages/Home";
+import { EventsList } from "./pages/EventsList";
+import { EventDetail } from "./pages/EventDetail";
+import { Login } from "./pages/Login";
+import { AdminDashboard } from "./pages/AdminDashboard";
+import { UserDashboard } from "./pages/UserDashboard";
+import { ProposeEvent } from "./pages/ProposeEvent";
 import { AuthProvider } from "./auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,      // <-- Nav now lives inside the router
+    element: <RootLayout />,
     children: [
-      { index: true, element: <EventsList /> },
+      { index: true, element: <Home /> },
+      { path: "events", element: <EventsList /> },
       { path: "events/:id", element: <EventDetail /> },
-      // add other routes here...
       { path: "login", element: <Login /> },
-      // { path: "admin/events", element: <AdminEvents /> },
-      // { path: "admin/users", element: <AdminUsers /> },
+      { path: "admin", element: <AdminDashboard /> },
+      { path: "me", element: <UserDashboard /> },
+      { path: "propose", element: <ProposeEvent /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* must wrapped Router */}
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>

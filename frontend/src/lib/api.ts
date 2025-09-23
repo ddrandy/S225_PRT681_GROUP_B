@@ -10,13 +10,23 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export type EventDto = {
-  id: string; title: string; description?: string;
-  category: number; startTime: string; endTime: string;
-  venueName: string; suburb: string; address: string; heroImageUrl?: string;
+  id: string;
+  title:
+  string;
+  description?: string;
+  category: number;
+  startTime: string;
+  endTime: string;
+  venueName: string;
+  suburb: string;
+  address: string;
+  heroImageUrl?: string;
 };
 export type Paged<T> = { total: number; page: number; pageSize: number; data: T[] };
 
 export const api = {
+  // public
+  health: () => http<{ status: string }>(`/api/health`),
   listEvents: (q = "", page = 1, pageSize = 10) =>
     http<Paged<EventDto>>(`/api/events?q=${encodeURIComponent(q)}&page=${page}&pageSize=${pageSize}`),
   getEvent: (id: string) => http<EventDto>(`/api/events/${id}`),
@@ -28,6 +38,7 @@ export const api = {
     }),
 
   // auth
+  me: () => http<{ id: string; email: string, userName: string; roles: string[] }>(`/api/auth/me`),
   login: async (email: string, password: string) => {
     const r = await http<{ token: string; roles?: string[] }>(
       `/api/auth/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
@@ -36,7 +47,10 @@ export const api = {
     localStorage.setItem("jwt", r.token);
     return r;
   },
-  me: () => http<{ id: string; email: string; userName: string; roles: string[] }>(`/api/auth/me`),
+  registerUser: (email: string, password: string) =>
+    http(`/api/auth/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+      { method: "POST" },
+    ),
 
   // admin
   createEvent: (e: Partial<EventDto>) =>
