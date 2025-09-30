@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+// src/pages/EventsList.tsx
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { api, type EventDto } from "../lib/api";
+import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
+import { process, type State } from "@progress/kendo-data-query";
 
 export function EventsList() {
   const [sp, setSp] = useSearchParams();
-  const [loading, setLoading] = useState(false);
   const [rows, setRows] = useState<EventDto[]>([]);
+  const [loading, setLoading] = useState(false);
   const q = sp.get("q") ?? "";
+
+  // Kendo state
+  const [state, setState] = useState<State>({ skip: 0, take: 10, sort: [] });
+  const data = useMemo(() => process(rows, state), [rows, state]);
 
   useEffect(() => {
     setLoading(true);
-    api.listEvents(q, 1, 24)
+    api.listEvents(q, 1, 100)
       .then(r => setRows(r.data))
       .finally(() => setLoading(false));
   }, [q]);
@@ -28,16 +35,31 @@ export function EventsList() {
         <input name="q" defaultValue={q} placeholder="Search Darwin…" className="border rounded px-3 py-2 flex-1" />
         <button className="bg-black text-white rounded px-4 py-2">Search</button>
       </form>
-      {loading && <div>Loading…</div>}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {rows.map(e => (
-          <Link key={e.id} to={`/events/${e.id}`} className="border rounded-xl p-4 bg-white hover:shadow">
-            <div className="text-xs opacity-60 mb-1">{new Date(e.startTime).toLocaleString()} · {e.suburb}</div>
-            <h3 className="font-semibold line-clamp-1">{e.title}</h3>
-            {e.description && <p className="text-sm opacity-80 mt-1 line-clamp-2">{e.description}</p>}
-          </Link>
-        ))}
-      </div>
+
+      {loading ? <div>Loading…</div> :
+        <Grid
+          data={data}
+          {...state}
+          pageable
+          sortable
+          onDataStateChange={e => setState(e.dataState)}
+          style={{ background: "white" }}
+        >
+          <Column field="title" title="Title" cell={(td) => (
+            <td>
+              <Link className="text-blue-600 underline" to={`/events/${(td.dataItem as EventDto).id}`}>
+                {(td.dataItem as EventDto).title}
+              </Link>
+            </td>
+          )} />
+          <Column field="suburb" title="Suburb" />
+          <Column field="venueName" title="Venue" />
+          <Column field="startTime" title="Start"
+            cell={td => <td>{new Date((td.dataItem as EventDto).startTime).toLocaleString()}</td>} />
+          <Column field="endTime" title="End"
+            cell={td => <td>{new Date((td.dataItem as EventDto).endTime).toLocaleString()}</td>} />
+        </Grid>
+      }
     </main>
   );
 }
