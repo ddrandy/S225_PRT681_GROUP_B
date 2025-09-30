@@ -22,6 +22,7 @@ builder.Services.AddCors(o =>
         .WithOrigins(
             "http://localhost:5174",
             "http://127.0.0.1:5174",
+            "http://localhost:8088",
             "https://ntevent.randytech.top"
         ));
 });
@@ -66,13 +67,26 @@ var authBuilder = builder.Services.AddAuthorizationBuilder();
 authBuilder.AddPolicy("AdminOnly", p => p.RequireRole("Admin"));
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+// Apply migrations and seed data
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+    
+    // Seed identity data (admin user)
+    await IdentitySeed.SeedAsync(scope.ServiceProvider);
+    
+    // Seed sample events
+    await SeedData.EnsureSeededAsync(scope.ServiceProvider);
+}
+
+// Configure Swagger
 var enableSwagger = app.Environment.IsDevelopment()
     || app.Configuration.GetValue<bool>("EnableSwagger");
 if (enableSwagger)
@@ -80,30 +94,23 @@ if (enableSwagger)
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        // keep relative path so it works behind reverse proxy
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "NT Events API v1");
-        c.RoutePrefix = "swagger"; // UI at /swagger
+        c.RoutePrefix = "swagger";
     });
-}
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-    // Optionally: await IdentitySeed.SeedAsync(scope.ServiceProvider);
 }
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
 
+// Only use HTTPS redirection in non-Docker environments
 if (!app.Environment.IsEnvironment("Docker"))
 {
     app.UseHttpsRedirection();
 }
+
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -363,6 +370,4 @@ app.MapGet("/api/admin/events/{id:guid}/registrations", async (Guid id, AppDbCon
     return Results.Ok(list);
 }).RequireAuthorization("AdminOnly");
 
-// Add seed admin
-await IdentitySeed.SeedAsync(app.Services);
 app.Run();

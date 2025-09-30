@@ -1,20 +1,18 @@
-version: "3.9"
-
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: ntevents-mssql
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "MSSql123!"     # ← set a strong literal here (no ${...})
-    # you don't need to publish 1433 to host; API talks over the compose network
+      SA_PASSWORD: "MSSql123!Strong"  # Strong password
     healthcheck:
-      # tools are under /opt/mssql-tools18 now; -C trusts server cert
       test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$${SA_PASSWORD}\" -C -Q \"SELECT 1\" >/dev/null 2>&1 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 30
-      start_period: 60s   # give SQL Server time to finish first-time init
+      start_period: 60s
+    networks:
+      - ntevents-network
 
   api:
     build:
@@ -22,9 +20,9 @@ services:
       dockerfile: backend/Dockerfile
     container_name: ntevents-api
     environment:
-      ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_ENVIRONMENT: "Docker"
       ASPNETCORE_URLS: "http://0.0.0.0:5248"
-      ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=Your_password123!;Encrypt=True;TrustServerCertificate=True"
+      ConnectionStrings__Default: "Server=mssql,1433;Database=NtEventsProd;User Id=sa;Password=MSSql123!Strong;Encrypt=True;TrustServerCertificate=True"
       Jwt__Issuer: "NtEvents"
       Jwt__Audience: "NtEventsClient"
       Jwt__Key: "xhMn9HXvLcTjZs/yWRTCOTtvaUa+9bgBkwK6jQvda4U="
@@ -34,13 +32,25 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:5248:5248"
+    networks:
+      - ntevents-network
 
   web:
     build:
       context: .
       dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE: "http://localhost:5248"
     container_name: ntevents-web
+    environment:
+      - NGINX_PROXY_API=http://api:5248
     ports:
       - "127.0.0.1:8088:80"
     depends_on:
       - api
+    networks:
+      - ntevents-network
+
+networks:
+  ntevents-network:
+    driver: bridge
