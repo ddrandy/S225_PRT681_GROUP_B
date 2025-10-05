@@ -1,0 +1,82 @@
+Practice Postman in NT Event Planner
+
+### **1. Import the Collection**
+
+1. Open **Postman**.
+2. Click **Import** → Upload your file `AgroScan API.postman_collection.json`.
+3. It will appear in the sidebar under **Collections** as *AgroScan API*.
+
+
+
+### **2. Set Up Environment Variables**
+collection uses placeholders like `{{baseUrl}}` and `{{token}}`.
+1. In Postman, create a **new Environment**.
+2. Add variables:
+
+   * `baseUrl` →  API base URL (e.g., `http://localhost:5000` or  API LInk).
+   * `token` → will be filled later after login.
+3. Select this environment at the top-right corner of Postman.
+
+
+### **3. Test Authentication APIs**
+
+* **Register User**
+
+  * Select **Auth → Register User**.
+  * Body is already filled with example data:
+
+    ```json
+    {
+      "firstName": "Musrat",
+      "lastName": "Jahan",
+      "email": "mj@example.com",
+      "password": "StrongPass123!"
+    }
+    ```
+  * Click **Send** →  get a success response.
+
+* **Login User**
+
+  * Select **Auth → Login User**.
+  * Enter the same email and password.
+  * Click **Send**.
+  * Copy the **JWT token** from the response.
+  * Save it in the **Environment variable `token`**.
+
+### **4. Test Protected Endpoints**
+
+Now use endpoints under **Inspections**:
+
+* **Get All Inspections**
+
+  * Needs `Authorization: Bearer {{token}}`.
+  * If token is correct, see inspection records.
+* **Create Inspection**
+
+  * JSON body is pre-filled:
+
+    ```json
+    {
+      "Name": "Music Event",
+      "inspectionDate": "2025-09-16T10:00:00Z",
+      "country": "Australia",
+      "state": "Northern Territory",
+      "city": "Darwin",
+    }
+    ```
+  * Send →  should get a `201 Created` response.
+
+### **5. Automate Tests**
+
+In Postman, go to the **Tests** tab of each request and add assertions, e.g.:
+
+```js
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Response has token", function () {
+    pm.expect(pm.response.json()).to.have.property("token");
+});
+```
+
+
