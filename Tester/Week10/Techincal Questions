@@ -1,0 +1,158 @@
+C1: 20 Common Basic Tech Q&A (Entry-Level Tester)
+Testing Fundamentals
+1.	What is the difference between verification and validation?
+Verification : Checking if we built the product correctly, following the design or plan (e.g., checking code against the design).
+Validation : Checking if we built the right product that the user actually needs (e.g., checking if the software meets user needs).
+2.	What are functional vs non-functional testing? Give examples.
+Functional testing : Tests what the system feature does (e.g., checking if login works).
+Non-functional testing : Tests how the system works (e.g., speed, security, usability).
+3.	What is the Software Testing Life Cycle (STLC)?
+It is a sequence of steps folowed during the testing process to ensure the software is tested correctly and meets quality standards. STLC covers phases like requirement analysis, test planning, test case design, test execution, defect reporting, and closure.
+4.	Explain smoke vs regression testing.
+Smoke Testing: A quick test done before full testing to check if the main functions of the software are working properly.
+Regression Testing :Testing to make sure new changes or updates haven’t broken any existing features of the software
+5.	Difference between manual and automation testing?
+Manual Testing is perform manually by a human without using any tools, to find bugs.
+ Automation Testing perform by tools or scripts, where instructions are given to automatically check for defects.
+6.	What are positive test cases vs negative test cases?
+Positive Test Case : Tests the software with valid input to check if it works as expected.
+Negative Test Case : Tests the software with invalid or unexpected input to check if it handles errors properly
+Defects & Bug Tracking
+7.	What is a defect/bug, and how is it different from error and failure?
+Bug/defect: mismatch or difference between expected and actual results.
+Error: human mistake in code/design.
+Failure: system doesn’t perform the expected function.
+8.	Explain defect life cycle.
+Defect Life Cycle → The journey of a defect/bug from the time it is found until it is fixed and closed.
+Steps in Defect Life Cycle :
+New → Defect is reported for the first time.
+Assigned → Defect is assigned to a developer to fix.
+Open → Developer starts working on the defect.
+Fixed/Resolved → Developer fixes the defect.
+Retest → Tester checks if the defect is fixed.
+Closed → Defect is confirmed fixed and closed.
+Reopen → If the defect still exists, it is reopened.
+
+9.	What key details should you include in a bug report?
+Bug ID/Title – A short, clear name for the bug.
+Description – What the bug is and what went wrong. Step-by-step instructions to show the bug.
+ Expected Result – What should happen.
+Actual Result – What actually happened.
+ Severity/Priority – How serious or urgent the bug is.
+ Environment – Where the bug occurred (OS, browser, device, etc.).
+ Attachments – Screenshots, logs, or videos showing the bug.
+Test Design & Execution
+10.	What is a test case? Components?
+Test Case : A document with steps, inputs, and expected results to check if a feature works correctly.
+Test Component : A specific part or module of the software that is tested, like a login page or payment feature
+11.	Difference between test plan and test strategy?
+Test Plan : A document that describes what to test, how to test, who will test, and when to test. It’s a detailed plan for the testing process.
+Test Strategy : A high-level document that describes the overall approach and goals of testing, including tools, techniques, and standards to follow.
+12.	What is boundary value analysis? Example?
+.Boundary Value Analysis (BVA) : A testing technique where you test the values at the edges or boundaries of input ranges, because errors often occur at the limits.
+Example: If an input accepts 1 to 10, you test 0, 1, 10, 11 to check for defects.
+
+13.	What is equivalence partitioning?
+Equivalence Partitioning (EP) : A testing technique where input data is divided into groups (partitions) that are expected to behave the same. You test one value from each group instead of all possible values.
+Example: If an input accepts 1–10:
+Valid partition: 1–10 : test  input 5
+Invalid partitions: <1: test input 0  & for >10 :  test input 11.
+
+Agile & Collaboration
+14.	What role does QA play in Agile methodology?
+QA is involved throughout the development process, not just at the end. They collaborate with developers and product owners and help define acceptance criteria and user stories. They perform continuous testing during each sprint and ensure the product meets quality standards before release.
+15.	What happens in a daily stand-up?
+A short daily meeting where each team member Share progress, plan the day, and highlight problems or blockers.
+
+Tools & Basics
+16.	What is JIRA used for in testing?
+JIRA is used for managing tasks, user stories, test cases, and defect tracking in Agile projects.
+17.	What is API testing, and why is it important?
+API Testing the Application Programming Interface (API) to check if it works correctly, returns the right data, and handles requests properly. 
+It ensures the backend works correctly, systems communicate properly, and bugs are caught early before affecting user.
+18.	What is SQL, and why do testers need to know it?
+SQL is used to query databases.
+Testers need it to check and verify data.
+19.	What is Selenium, and how does it help in testing?
+Selenium is a tool that automates testing of web applications to save time and reduce manual effort.
+20.	Why is version control (like Git) useful for testers?
+Version control helps testers track changes, test the right version, and collaborate with developers easily.
+
+C2:  Resume/Project-specific Technical Q&A (Entry-Level Tester)
+JMeter (Performance Testing)
+1. What is JMeter and when would you use it?
+ JMeter is an open-source tool used for performance, load, and stress testing of web applications, APIs, and servers. I would use it to simulate multiple users accessing the system at the same time to check how the application performs under load.
+2. How do you create a basic test in JMeter?
+Steps:
+Create a Test Plan.
+Add a Thread Group (define number of users, ramp-up time, loop count).
+Add a Sampler (e.g., HTTP Request).
+Add Listeners (View Results Tree, Summary Report) to see results.
+Run the test.
+3. What is the difference between load testing and stress testing in JMeter?
+ Load testing checks how the system performs under expected user load. 
+Stress testing pushes beyond normal limits to see when the system breaks.
+Jira (Bug/Project Management)
+4. How do you log a bug in Jira?
+ Steps:
+Go to the project → click Create.
+Select Issue Type = Bug.
+Enter details: Summary, Description (steps to reproduce, expected vs actual), Severity/Priority, Environment, Attach screenshot/log.
+Assign to developer.
+5. What is the difference between Epic, Story, Task, and Bug in Jira?
+Epic: High level of requirement.
+Story: Smaller functionality under Epic.
+Task: Work item assigned to team members.
+Bug: Defect/issue in the system.
+6. How do you track the status of a bug in Jira?
+ By checking its workflow (Open → In Progress → In Review → Resolved → Closed). Status updates show progress.
+Zephyr (Test Management in Jira)
+7. What is Zephyr used for?
+ Zephyr is a Jira plugin used for test case management. It helps create, organize, execute, and track test cases directly inside Jira.
+8. How do you execute a test case in Zephyr?
+Go to the test cycle.
+Select the test case.
+Select Test script
+Select Automate test
+Execute → choose status (Pass, Fail, Blocked, WIP).
+Attach evidence (screenshots, logs).
+8. Can Zephyr be linked with Jira issues?
+ Yes, test cases in Zephyr can be linked to Jira Stories/Bugs so you can trace requirements and defects.
+            9. Can you explain how you created and managed a test case in JIRA/Zephyr?
+In my practice project, I set up Zephyr inside JIRA. I created a test case with steps, expected results, and linked it to a user story.
+OWASP ZAP (Security Testing)
+10. What is OWASP ZAP used for?
+ It’s an open-source tool for finding security vulnerabilities in web applications, like SQL injection, XSS, or authentication issues.
+11. What is the difference between Active Scan and Passive Scan in ZAP?
+       Passive Scan: Monitors traffic without modifying requests (safe, non-intrusive).
+Active Scan: Actively attacks the app with payloads to find vulnerabilities.
+12. Give an example of a common vulnerability you can find with ZAP.
+ Cross-Site Scripting (XSS): injecting malicious scripts into input fields.
+ Postman (API Testing)
+13. How do you test an API in Postman?
+Select request type (GET, POST, PUT, DELETE).
+Enter API URL.
+Add headers (e.g., Content-Type, Authorization).
+Add request body (if needed).
+Send → check response (status code, body, time).
+14. What is the difference between GET and POST request in API testing?
+GET: Retrieves data (safe, no body).
+POST: Submits data (has request body, modifies server).
+15. How do you automate API tests in Postman?
+ Using Collections + Test scripts. You can write JavaScript in the “Tests” tab for assertions (e.g., check status code = 200).
+SoapUI (Basic API Testing for SOAP/REST)
+16. What is SoapUI used for?
+ It’s a tool for testing SOAP and REST APIs. It allows functional, security, and load testing.
+17. What’s the difference between SoapUI and Postman?
+     SoapUI: Supports both SOAP & REST APIs, more advanced for enterprise testing.
+Postman: Easier, mostly REST-focused, great for quick/manual testing.
+18. How do you create a SOAP request in SoapUI?
+Create a new SOAP project.
+Add the WSDL URL.
+Select operation → SoapUI auto-generates request XML.
+Enter parameters → Send → check response.
+Automation Tools (Selenium )
+19. How did you create your first Selenium script?
+I practised automating Google search. Wrote a simple Java Selenium script to open browser, enter text, and click search. It gave me confidence in writing automation basics.
+20. In your Selenium/Cypress project, what challenges did you face?
+Setting up Selenium with drivers was tricky. I followed tutorials, fixed PATH issues, and used simple examples. Once configured, I could run tests smoothly
