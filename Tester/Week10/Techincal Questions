@@ -1,4 +1,5 @@
 C1: 20 Common Basic Tech Q&A (Entry-Level Tester)
+C1: 20 Common Basic Tech Q & A (Entry-Level Tester)
 Testing Fundamentals
 1.	What is the difference between verification and validation?
 Verification : Checking if we built the product correctly, following the design or plan (e.g., checking code against the design).
@@ -32,7 +33,6 @@ Fixed/Resolved → Developer fixes the defect.
 Retest → Tester checks if the defect is fixed.
 Closed → Defect is confirmed fixed and closed.
 Reopen → If the defect still exists, it is reopened.
-
 9.	What key details should you include in a bug report?
 Bug ID/Title – A short, clear name for the bug.
 Description – What the bug is and what went wrong. Step-by-step instructions to show the bug.
@@ -51,19 +51,16 @@ Test Strategy : A high-level document that describes the overall approach and go
 12.	What is boundary value analysis? Example?
 .Boundary Value Analysis (BVA) : A testing technique where you test the values at the edges or boundaries of input ranges, because errors often occur at the limits.
 Example: If an input accepts 1 to 10, you test 0, 1, 10, 11 to check for defects.
-
 13.	What is equivalence partitioning?
 Equivalence Partitioning (EP) : A testing technique where input data is divided into groups (partitions) that are expected to behave the same. You test one value from each group instead of all possible values.
 Example: If an input accepts 1–10:
 Valid partition: 1–10 : test  input 5
 Invalid partitions: <1: test input 0  & for >10 :  test input 11.
-
 Agile & Collaboration
 14.	What role does QA play in Agile methodology?
 QA is involved throughout the development process, not just at the end. They collaborate with developers and product owners and help define acceptance criteria and user stories. They perform continuous testing during each sprint and ensure the product meets quality standards before release.
 15.	What happens in a daily stand-up?
 A short daily meeting where each team member Share progress, plan the day, and highlight problems or blockers.
-
 Tools & Basics
 16.	What is JIRA used for in testing?
 JIRA is used for managing tasks, user stories, test cases, and defect tracking in Agile projects.
@@ -77,7 +74,6 @@ Testers need it to check and verify data.
 Selenium is a tool that automates testing of web applications to save time and reduce manual effort.
 20.	Why is version control (like Git) useful for testers?
 Version control helps testers track changes, test the right version, and collaborate with developers easily.
-
 C2:  Resume/Project-specific Technical Q&A (Entry-Level Tester)
 JMeter (Performance Testing)
 1. What is JMeter and when would you use it?
@@ -155,4 +151,7 @@ Automation Tools (Selenium )
 19. How did you create your first Selenium script?
 I practised automating Google search. Wrote a simple Java Selenium script to open browser, enter text, and click search. It gave me confidence in writing automation basics.
 20. In your Selenium/Cypress project, what challenges did you face?
-Setting up Selenium with drivers was tricky. I followed tutorials, fixed PATH issues, and used simple examples. Once configured, I could run tests smoothly
+Setting up Selenium with drivers was tricky. I followed tutorials, fixed PATH issues, and used simple examples. Once configured, I could run tests smoothly.
+
+
+
