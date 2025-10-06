@@ -1,51 +1,70 @@
 C2. Create a catalog of top 20 behaviour questions 
-  Introduction & Background
-1.	Tell me about yourself.
-I have recently built my skills in software testing through LinkedIn courses and Youtube for hands-on projects. I focused on tools like JIRA, Postman, and Selenium, and applied them in small projects. I’m now keen to apply these skills in a professional environment and grow into a QA role.
-2.	Walk me through your resume.
-As you can see, my background includes IT study, practical projects, and school work. Along this, I completed online course and and practised tools from courses and youtuve to prepare for software testing roles. That gives me technical skills with strong teamwork and communication experience.
-3.	Why are you interested in this role and our company?
-I researched this company’s focus on delivering quality solutions. I’m motivated by the chance to contribute to a team that values quality and continuous improvement. It’s a great match for my skills and career goals.
-4.	What motivates you to work in software testing / IT?
- I have strong observation and analytical skills, which help me identify errors effectively. Software testing gives me the chance to apply these skills—finding issues early and improving overall quality. I feel motivated knowing that my work contributes to delivering better products for users.
-
-Work Style & Productivity
-5.	How do you prioritise tasks when you have multiple deadlines?
-In my experience with after-school care, childcare, and university projects, I often faced competing priorities. To manage this, I break tasks into smaller steps, create a clear to-do list, and regularly check in with my supervisor or team members to confirm priorities. This approach helps me stay organised, focus on what’s most urgent, and ensure I deliver tasks on time.
-6.	Example of managing a complex task or project.
-During my study, I had to learn multiple tools in a short time. I created a schedule, focused on one tool per day, and took notes for quick reference. I completed the learning plan and could demonstrate each tool in interviews.
-7.	How do you stay organised and ensure quality?
-I stay organised by planning my tasks, making a list, and doing one step at a time. To make sure my work is good, I check it carefully and ask for feedback if needed.
-8.	How do you handle stress or pressure?
-In my childcare work, the job is challenging and stressful, I learned to stay calm and patient in there. For university projects, I manage pressure by breaking tasks into smaller steps and asking for help when needed. This helps me complete my work on time and support my team.
-Teamwork & Collaboration
-9.	Tell me about a time you worked successfully in a team.
-In our university project, we used to do team projects and successfully submitted and passed. In my childcare job, our team had to organise a small event for the children. We divided tasks; some of us prepared activities, others handled snacks and decorations. I coordinated with my teammates, helped where needed, and made sure everyone knew their responsibilities. The event went smoothly, and the children really enjoyed it. 
-10.	Describe a conflict with a colleague and how you resolved it.
+  
+1. Tell me about yourself.
+I am a master’s student at CDU. During my studies, I became interested in how software quality affects user experience.I started learning testing tools like JIRA and Postman through small online projects and built a daily routine to practise. I have built my skills in software testing through LinkedIn courses and YouTube hands-on projects. I’m now keen to apply these skills in a professional environment and grow in this field. 
+2. Walk me through your resume.
+My background includes software engineering study and practical projects. I completed online courses and practised tools from courses and YouTube to prepare for software testing roles. I did some group projects at university, which gave me technical skills with strong teamwork and communication experience.
+3. Why are you interested in this role and our company?
+When I was doing my testing course, I started to like the roles and tasks in testing. Then I researched more and learned deeply about the testing career. I found that it’s my thing, so I’m interested in this IT Test Analyst position.
+When I read about your company, I found that your company focuses on employee career development and innovation. So I see an opportunity to learn new and unique things here. Also, I can achieve higher positions as part of my career development. That’s what I like.
+4. What motivates you to work in software testing?
+In one practice project, I found a small defect that was breaking login validation.
+After fixing it, the application started working smoothly, and users could log in without issues. I felt motivated knowing that my work contributes to delivering better products for users.
+5. How do you prioritise tasks when you have multiple deadlines?
+In university, I had two major submissions due in the same week.
+I listed both tasks, broke them into small parts, and focused on impact.
+That structure helped me finish both on time with clear results instead of rushing at the end.
+6. Example of managing a complex task or project.
+Once, I had to learn three testing tools in three weeks while taking other courses as well.
+I created a timetable, spent an hour daily on each tool, and summarised what I learned in notes. By the end of the week, I could learn each tool confidently and completed my project perfectly.
+7. How do you stay organised and ensure quality?
+During my course project, our team tracked testing steps manually and often lost updates. I preferred creating a shared checklist to record each test and result daily. Personally, I planned my tasks, made lists, and asked for feedback if needed.
+That small change kept me organised.
+8. How do you handle stress or pressure?
+When I worked in childcare, unexpected staff absences and behavioural issues with children were common. I learned to stay calm, plan small tasks, and communicate priorities with the team. 
+The same mindset helps me in testing. When I started learning Postman, some coding files were not working on my PC, and I had only a few hours left. I tried to stay calm and focused. Finally, I did it.
+9. Tell me about a time you worked successfully in a team.
+In one group project, our task was to deliver a small event management app.
+We divided roles — I handled testing part and another person built the interface and coding. By cooperating with each other, we delivered a working demo on time and completed the project successfully.
+10. Describe a conflict with a colleague and how you resolved it.
 Luckily, I have a good relationship with my colleagues. Sometimes we have disagreements, but I listen to their ideas first and then share my opinion, so we can find a solution together.
-11.	How do you handle feedback?
-I often ask for feedback on my work. When I receive it, I listen carefully, ask questions if I’m not sure, and make improvements. I believe feedback helps me do better.
-12.	How do you collaborate with developers or analysts?
-In a project exercise, I had to work with peers as devs and BAs. I clarified requirements, shared test cases, and raised issues clearly. This made communication smoother and improved overall project flow.
-
-Problem-Solving & Adaptability
-13.	Describe a time you faced a challenge at work.
-Once, a system was down during my shift. I reported the issue to the manager. I used backup processes and kept children’s parents informed. The situation was managed without major complaints.
-14.	Example where you made a mistake.
-Once, I misfiled a document in the wrong folder. I admitted it, corrected it quickly, and set a checklist to avoid repeat errors. My boss appreciated my honesty and improvement.
-15.	Tell me about a time you quickly learnt something new.
-I had to pick up Postman quickly for a mock project. I watched tutorials, practised simple GET/POST requests. Within a day, I was confident to demo basic API tests.
-16.	How do you approach a problem when you don’t know the answer?
-Sometimes a task is unfamiliar. I research online, ask team members, and try small steps to learn. I try to find the answer without delay and gain new skills to solve the problem.
-
-Communication & Stakeholder Management
-17.	How do you explain technical issues to non-technical people?
-As I mentioned earlier, In childcare, I explained system issues to parents. I avoided jargon, used simple examples, and focused on the impact. They understood and stayed calm.
-18.	Example of managing expectations with a manager/client.
- Some tasks once took longer than expected. I informed my supervisor early, explained the reasons, and gave a new timeline. They appreciated my honesty and adjusted plans.
-Growth & Values
-19.	Where do you see yourself in 2–3 years?
-I’m starting as an entry-level tester. I plan to build solid testing skills, gain certifications, and grow into QA Analyst. In 2–3 years, I aim to contribute to larger projects and mentor juniors.
-20.	What makes you a good fit for Aussie workplace culture?
-I value teamwork and clear communication. I listen, contribute, respect others, and stay calm and approachable. This aligns with the collaborative and respectful culture in Aussie companies.
+11. How do you handle feedback?
+During my mock API testing exercise, one developer told me my documentation had too much description. I reviewed his notes, added screenshots and clearer test descriptions.
+When he checked again, he said it was easy to follow. It taught me that feedback is the fastest way to grow.
+12. How do you collaborate with developers or analysts?
+In a simulated project, I worked as a tester while another student acted as a developer.
+We used JIRA and Teams to track bugs, and I attached logs and screenshots for each defect to send to them. This helped us deliver a clean final build.
+13. Describe a time you faced a challenge at work.
+When I started learning Jenkins, some files were not working on my PC. I tried to stay calm and focused. I found the issue and fixed it. Finally, I got it working.
+Once, during my childcare job, our system for sign-ins stopped working suddenly.
+I informed the manager, wrote names manually, and contacted IT for immediate support.
+The quick response kept the process running smoothly until the system was restored.
+14. Example where you made a mistake.
+During a group project, I accidentally made a frontend file in the backend folder.
+After noticing, I changed it and put it in the right folder. I also informed my team immediately. Since then, I always label files clearly and double-check before saving.
+15. Tell me about a time you quickly learnt something new.
+In a testing assignment, I was asked to use Postman for API testing — a tool I hadn’t tried before. I watched a short tutorial, practised sending GET and POST requests, and documented the process. By the next day, I was comfortable enough to guide others in the group.
+16. How do you approach a problem when you don’t know the answer?
+When learning Selenium, I got stuck on a locator error I didn’t understand.
+Instead of guessing, I searched documentation, watched a demo, and tested different approaches. Solving it gave me confidence to handle unfamiliar challenges systematically.
+17. How do you explain technical issues to non-technical people?
+At work, I once had to explain a software issue to staff with no IT background.
+I described it like “a traffic jam” — too many tasks trying to go through one path.
+They immediately understood the issue and appreciated the simple explanation.
+18. Example of managing expectations with a manager or client.
+In a group project, our test results took longer than planned due to setup delays.
+I informed the tutor early, explained the reasons, and shared a new schedule.
+Being upfront kept communication clear and avoided unnecessary pressure.
+ 19. Where do you see yourself in 2–3 years?
+Starting as a tester, the goal is to grow through consistent learning and hands-on projects.
+The plan includes gaining automation experience and certifications like ISTQB.
+In 2–3 years, I aim to handle a senior QA role and support junior testers.
+20. What makes you a good fit for Aussie workplace culture?
+University group projects and other work experiences taught me the value of communication, respect, and teamwork. Australian workplaces appreciate honesty and collaboration, and cooperation is part of my approach. I believe positive relationships, respect, and transparency make every team perform better.
+21. What are your strengths?
+During my previous role, I was responsible for opening the site early each morning.
+I always arrived before time, prepared materials, and ensured everything was ready before others arrived. That habit of staying punctual, active, and prepared helped the whole team start smoothly and built trust in my reliability.
+22. What are your weaknesses?
+In my past projects, I used to finish my work early because I like to stay ahead and not rush near the deadline.
+Sometimes I spent extra time checking or arranging things again to make sure everything was perfect. Now I try to balance it better — I still stay early and organised, but I also leave time to review with the team before finishing.
 
