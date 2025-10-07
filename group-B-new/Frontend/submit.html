@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Event - NT Event Finder</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>NT Event Finder</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse.html">Browse Events</a></li>
+                <li><a href="submit.html" class="active">Submit Event</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="auth-links">
+                    <a href="login.html" id="loginLink">Login</a>
+                    <a href="register.html" id="registerLink">Register</a>
+                    <a href="dashboard.html" id="dashboardLink" style="display: none;">Dashboard</a>
+                    <a href="#" id="logoutLink" style="display: none;">Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Submit Event Form -->
+    <section class="submit-section">
+        <div class="container">
+            <div class="submit-container">
+                <h1>Submit an Event</h1>
+                <p class="subtitle">Share your event with the NT community</p>
+                
+                <form id="submitEventForm" onsubmit="handleSubmitEvent(event)">
+                    <div class="form-group">
+                        <label for="title">Event Title *</label>
+                        <input type="text" id="title" name="title" required maxlength="200">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time">Time *</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" required maxlength="200" placeholder="e.g., Darwin Convention Centre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="Music">Music</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Arts">Arts & Culture</option>
+                            <option value="Food">Food & Drink</option>
+                            <option value="Community">Community</option>
+                            <option value="Education">Education</option>
+                            <option value="Business">Business</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="imagePath">Image URL</label>
+                        <input type="text" id="imagePath" name="imagePath" placeholder="Enter image URL or path (e.g., ../assets/1.jpeg)">
+                        <small>You can use images from the assets folder or provide an external URL</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" name="description" rows="6" required placeholder="Describe your event..."></textarea>
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message"></div>
+                    <div id="successMessage" class="success-message"></div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Event</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+                
+                <div class="info-box">
+                    <h3>Submission Guidelines</h3>
+                    <ul>
+                        <li>All fields marked with * are required</li>
+                        <li>Your event will be reviewed by an administrator before being published</li>
+                        <li>Admins can approve events immediately</li>
+                        <li>Make sure to provide accurate and complete information</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NT Event Finder</h3>
+                    <p>Discover and share local events in the Northern Territory</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse Events</a></li>
+                        <li><a href="submit.html">Submit Event</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NT Event Finder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/submit.js"></script>
+</body>
+</html>

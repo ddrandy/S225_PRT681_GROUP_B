@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NT Event Finder</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>NT Event Finder</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse.html">Browse Events</a></li>
+                <li><a href="submit.html">Submit Event</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="auth-links">
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <a href="#" id="logoutLink">Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <h1>Dashboard</h1>
+            
+            <!-- User Profile -->
+            <div class="dashboard-card">
+                <h2>My Profile</h2>
+                <div id="profileInfo">
+                    <!-- Profile info will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Admin Panel (only visible to admins) -->
+            <div id="adminPanel" style="display: none;">
+                <div class="dashboard-card">
+                    <h2>Admin Controls</h2>
+                    
+                    <!-- Pending Events -->
+                    <div class="admin-section">
+                        <h3>Pending Events</h3>
+                        <div id="pendingEventsContainer">
+                            <!-- Pending events will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Manage Users -->
+                    <div class="admin-section">
+                        <h3>Manage Users</h3>
+                        <div id="usersContainer">
+                            <!-- Users list will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Panel -->
+            <div id="userPanel">
+                <div class="dashboard-card">
+                    <h2>My Events</h2>
+                    <div id="myEventsContainer" class="events-grid">
+                        <!-- User's created events will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2>My Favorites</h2>
+                    <div id="myFavoritesContainer" class="events-grid">
+                        <!-- User's favorite events will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NT Event Finder</h3>
+                    <p>Discover and share local events in the Northern Territory</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse Events</a></li>
+                        <li><a href="submit.html">Submit Event</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NT Event Finder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

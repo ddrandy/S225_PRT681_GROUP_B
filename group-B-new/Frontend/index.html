@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NT Local Event Finder - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>NT Event Finder</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="browse.html">Browse Events</a></li>
+                <li><a href="submit.html">Submit Event</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="auth-links">
+                    <a href="login.html" id="loginLink">Login</a>
+                    <a href="register.html" id="registerLink">Register</a>
+                    <a href="dashboard.html" id="dashboardLink" style="display: none;">Dashboard</a>
+                    <a href="#" id="logoutLink" style="display: none;">Logout</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Local Events in the Northern Territory</h1>
+            <p>Find and join amazing events happening around you</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for events...">
+                <div class="search-filters">
+                    <input type="date" id="dateFilter" placeholder="Date">
+                    <input type="text" id="locationFilter" placeholder="Location">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Music">Music</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Arts">Arts & Culture</option>
+                        <option value="Food">Food & Drink</option>
+                        <option value="Community">Community</option>
+                        <option value="Education">Education</option>
+                        <option value="Business">Business</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="searchEvents()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Events Carousel -->
+    <section class="featured-section">
+        <div class="container">
+            <h2>Featured Events</h2>
+            <div class="carousel" id="featuredCarousel">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <div class="carousel-container" id="carouselContainer">
+                    <!-- Featured events will be loaded here -->
+                </div>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-section">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <div class="events-grid" id="upcomingEvents">
+                <!-- Upcoming events will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NT Event Finder</h3>
+                    <p>Discover and share local events in the Northern Territory</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse Events</a></li>
+                        <li><a href="submit.html">Submit Event</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@nteventfinder.com</p>
+                    <p>Phone: (08) 1234 5678</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">Facebook</a>
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NT Event Finder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
