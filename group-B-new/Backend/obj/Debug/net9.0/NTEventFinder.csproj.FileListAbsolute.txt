@@ -1,0 +1,7 @@
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.csproj.AssemblyReference.cache
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.GeneratedMSBuildEditorConfig.editorconfig
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.AssemblyInfoInputs.cache
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.AssemblyInfo.cs
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.csproj.CoreCompileInputs.cache
+D:\cdu\semester4\681\group\group B new\Backend\obj\Debug\net9.0\NTEventFinder.MvcApplicationPartsAssemblyInfo.cache
