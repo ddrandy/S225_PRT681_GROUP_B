@@ -1,1 +1,45 @@
+Open ZAP.
 
+Quick Start → Paste URL
+
+In the Quick Start tab, paste the target URL into "URL to attack" (e.g. https://example.test).
+
+Choose browser
+
+Click “Open URL in browser” or the browser dropdown and select Firefox or Chrome (ZAP can launch a browser configured to use its proxy).
+
+If ZAP asks to install the ZAP browser extension or a temporary profile, accept (this lets ZAP capture traffic).
+
+Crawl / exercise the app (recommended)
+
+In the launched browser, click through the site/application or log in (if you’re testing authenticated areas). This populates the Sites tree in ZAP.
+
+Start the Active Scan (attack)
+
+Option A (Quick Start): Back in Quick Start, click Attack (this runs an Active Scan against the pasted URL).
+
+Option B (Sites tree): In the Sites pane, right-click the target site or specific page → Attack → Active Scan… → Configure options if needed → Start Scan.
+
+Monitor scan progress
+
+The Active Scan window shows progress (requests/sec, queue, threads). You can Pause or Stop if needed.
+
+View Alerts (results)
+
+Open the Alerts tab (usually bottom/right). Alerts are listed by risk level (High/Medium/Low/Info).
+
+Click an alert row to see details: Description, URI, Parameter, Evidence, Solution, and Request/Response examples.
+
+Export/save report
+
+Menu: Report → Generate HTML Report (or Save whichever formats are available) to create a shareable report with findings.
+
+Finish up
+
+Stop the scan if still running, close the browser ZAP launched, clear temporary sessions if necessary
+
+
+
+
+I am  practicing with Youtube9 https.www,youtube.com.
+below attached the picture for this.
