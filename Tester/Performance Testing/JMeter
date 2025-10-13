@@ -1,1 +1,57 @@
 
+
+Start JMeter
+
+Run bin/jmeter (GUI) or bin/jmeter.bat on Windows.
+
+Create Test Plan
+
+Right-click Test Plan → Add → Threads (Users) → Thread Group.
+
+Configure: Number of Threads (users), Ramp-Up (seconds), Loop Count (or check Forever).
+
+Set target server defaults (optional but handy)
+
+Right-click Thread Group → Add → Config Element → HTTP Request Defaults.
+
+Set Server Name or IP (e.g. example.com) and Port Number (e.g. 80 or 443).
+
+Add HTTP Sampler (the request)
+
+Right-click Thread Group → Add → Sampler → HTTP Request.
+
+Method: GET/POST. Path: /api/login (example). If using JSON, leave Body Data for payload.
+
+Add CSV Data Set Config (for parameterized tests like multiple users)
+
+Right-click Thread Group → Add → Config Element → CSV Data Set Config.
+
+Set Filename, Variable Names (e.g. username,password), Recycle on EOF = True/False as needed.
+
+Add HTTP Header Manager (for JSON content type, auth tokens)
+
+Right-click HTTP Request or Thread Group → Add → Config Element → HTTP Header Manager.
+
+Add Content-Type: application/json, Authorization: Bearer ${token}, etc.
+
+Add Timers (to avoid unrealistic instant requests)
+
+Right-click Thread Group → Add → Timer → Constant Timer or Uniform Random Timer.
+
+Set delay (ms) between requests.
+
+Add Assertions (validate responses)
+
+Right-click HTTP Request → Add → Assertion → Response Assertion.
+
+E.g., assert that Response Code equals 200 or Response Text contains success.
+
+Add Listeners (view results) — use sparingly in GUI for large loads
+
+Right-click Thread Group → Add → Listener → View Results in Table / Summary Report / Aggregate Report / View Results Tree.
+
+Tip: Remove heavy listeners (View Results Tree) for large tests; they consume memory.
+
+Run test (GUI)
+
+
