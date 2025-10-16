@@ -1,0 +1,88 @@
+**Selenium Setup and Test in Command Line (Step by Step)**
+
+###  Step 1 – Check Python
+
+```bash
+python --version
+```
+
+
+### 🔹 Step 2 – Check pip
+
+```bash
+pip --version
+```
+
+If it says “not found,” then run:
+
+```bash
+python -m ensurepip --default-pip
+```
+
+---
+
+### Step 3 – Install Selenium and WebDriver Manager
+
+```bash
+pip install selenium webdriver-manager
+```
+
+---
+
+###  Step 4 – Create a test file
+
+In Command Prompt (Windows) or Terminal (Mac/Linux):
+
+```bash
+notepad test_selenium.py
+```
+
+️
+
+```python
+# test_selenium.py
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# setup Chrome
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
+# open website
+driver.get("https://www.google.com")
+
+# print title
+print("Page title:", driver.title)
+
+# wait few seconds
+time.sleep(3)
+
+# close browser
+driver.quit()
+
+
+### 🔹 Step 5 – Run the test
+
+```bash
+python test_selenium.py
+```
+
+
+### 🔹 Step 6 – (If want Headless mode)
+
+Edit the file and add this before `driver = webdriver.Chrome(...)`:
+
+```python
+from selenium.webdriver.chrome.options import Options
+options = Options()
+options.add_argument("--headless=new")
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+```
+
+Then rerun:
+
+```bash
+python test_selenium.py
+```
