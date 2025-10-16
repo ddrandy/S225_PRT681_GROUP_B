@@ -1,5 +1,5 @@
-#  NT Local Event Finder  
-**Group B – PRT681 Software Testing Project**
+#  NT Local Event   
+**Group B – PRT681 Software Engineering Project**
 
 ##  Project Overview
 
