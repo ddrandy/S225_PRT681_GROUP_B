@@ -89,7 +89,7 @@
 **Tool:** [Selenium WebDriver](https://www.selenium.dev/)  
 **Goal:** Automate UI tests for navigation, buttons, and forms.  
 
-### Scripts
+### Test
 - Navigate the Website
 
 **Environment:** Chrome + Python (WebDriver Manager)
@@ -133,12 +133,14 @@
  ZAP: https://github.com/ddrandy/S225_PRT681_GROUP_B/tree/master/Tester/Security%20Testing
 
 ### Screenshots
-Website is working  so no alerts:: 
+Website is working  so no alerts:
+
 ![ZAP Dashboard](https://github.com/ddrandy/S225_PRT681_GROUP_B/blob/master/Tester/Security%20Testing/ZAP/NTEventPlanner_ZAP_SS.png)
 
  --- 
  
   For Youtube 
+  
   ![ZAP Alert Report](https://github.com/ddrandy/S225_PRT681_GROUP_B/blob/master/Tester/Security%20Testing/ZAP/ZAP_Practice4.png)
 
 
